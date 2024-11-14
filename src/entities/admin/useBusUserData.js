@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import getTestData from "./getTestData";
 
 const getBusUserData = async () => {
   try {
@@ -24,44 +25,6 @@ const getBusUserData = async () => {
   } catch (error) {
     console.log("네트워크 또는 서버 오류:", error);
   }
-};
-
-const getTestData = (date) => {
-  const userTestData = [
-    {
-      date: "2024-10-01",
-      time: "09:00",
-      name: "김만덕",
-      wakeup: true,
-    },
-    {
-      date: "2024-10-01",
-      time: "13:00",
-      name: "김만덕",
-      wakeup: false,
-    },
-    { date: "2024-10-01", time: "15:30", name: "감만덕", wakeup: true },
-    {
-      date: "2024-10-01",
-      time: "18:00",
-      name: "감만덕",
-      wakeup: false,
-    },
-    { date: "2024-10-02", time: "07:30", name: "감만덕", wakeup: true },
-    {
-      date: "2024-10-02",
-      time: "10:00",
-      name: "감만덕",
-      wakeup: true,
-    },
-    {
-      date: "2024-11-14",
-      time: "10:00",
-      name: "감만덕",
-      wakeup: true,
-    },
-  ];
-  return userTestData.filter((userData) => userData.date === date);
 };
 
 const useBusUserData = () => {

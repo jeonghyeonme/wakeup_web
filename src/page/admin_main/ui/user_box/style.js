@@ -9,6 +9,7 @@ export const Container = styled.div`
   width: 360px;
   height: 80px;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 export const Text = styled.span`

@@ -1,26 +1,25 @@
 import styled from "styled-components";
 
 export const HeaderTag = styled.div`
-  width: 100%;
-  height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
+  padding: 10px;
+  height: 10vh;
 `;
 
 export const DateText = styled.span`
-  width: 80%;
   font-size: 22px;
   font-weight: 700;
   color: #333;
   cursor: pointer;
+  width: 90%;
 `;
 
 export const DateInput = styled.input`
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
-  border: none;
-  outline: none;
-  cursor: pointer;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: auto; /* 포커스를 받을 수 있도록 설정 */
 `;
