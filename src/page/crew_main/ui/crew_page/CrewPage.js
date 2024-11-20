@@ -29,10 +29,6 @@ const CrewPage = () => {
 
   const timer = useTime(busScheduleData?.time, formattedTime);
 
-  useEffect(() => {
-    console.log("시계", timer);
-  }, [timer]);
-
   return (
     <TimerContainer>
       <TextContainer>
@@ -41,7 +37,7 @@ const CrewPage = () => {
         <TimeText>배차 시간 : {busScheduleData?.time}</TimeText>
       </TextContainer>
       <CircularWrapper>
-        <CircularBackground>
+        <CircularBackground attendanc={busScheduleData?.attendanc}>
           <CircularText>
             {busScheduleData?.attendanc ? <p>출석 완료</p> : <p>남은 시간</p>}
             {timer}

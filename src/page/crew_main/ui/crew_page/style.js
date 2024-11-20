@@ -39,10 +39,12 @@ export const CircularBackground = styled.div`
   height: 100%;
   border-radius: 50%;
   border: 15px solid #81c784; /* 외부 원형 테두리 */
+  border-color: ${(props) => (props.attendanc ? "#81c784" : "#FEC3C3")};
   background: transparent; /* 가운데 빈 부분 */
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const CircularText = styled.div`
