@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavContainer, NavItem } from "./style";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import usePageChange from "../model/usePageChange";
 
 const Footer = () => {
   const [activeTab, setActiveTab] = useState("home");
+  const pageChange = usePageChange();
+  useEffect(() => {
+    pageChange(activeTab);
+  }, [activeTab]);
 
   return (
     <NavContainer>

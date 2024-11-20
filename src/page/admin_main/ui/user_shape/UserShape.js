@@ -8,8 +8,8 @@ import NonScheduleWidget from "../../../../widget/non_schedule/ui/NonSchedule";
 const UserShape = () => {
   const [date] = useDateAtom();
   const [busUserData, error, fetchData] = useBusUser();
+
   useEffect(() => {
-    console.log("데이트", date);
     fetchData(date);
   }, [date]);
 
