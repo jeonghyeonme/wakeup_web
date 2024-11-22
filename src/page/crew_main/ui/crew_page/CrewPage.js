@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TimerContainer,
   DateText,
@@ -23,11 +23,8 @@ const CrewPage = () => {
     fetchData(formattedDateShort, name, formattedTime);
   }, [formattedDate, name, formattedTime]);
 
-  useEffect(() => {
-    console.log("버스데이터", busScheduleData);
-  }, [busScheduleData]);
-
   const timer = useTime(busScheduleData?.time, formattedTime);
+  const [check, setCheck] = useState(false);
 
   return (
     <TimerContainer>
@@ -36,11 +33,18 @@ const CrewPage = () => {
         <DateText>{formattedDate}</DateText>
         <TimeText>배차 시간 : {busScheduleData?.time}</TimeText>
       </TextContainer>
-      <CircularWrapper>
-        <CircularBackground attendanc={busScheduleData?.attendanc}>
+      <CircularWrapper
+        onClick={() => {
+          setCheck(true);
+        }}>
+        <CircularBackground attendanc={busScheduleData?.attendanc || check}>
           <CircularText>
-            {busScheduleData?.attendanc ? <p>출석 완료</p> : <p>남은 시간</p>}
-            {timer}
+            {busScheduleData?.attendanc || check ? (
+              <p>출석 완료</p>
+            ) : (
+              <p>남은 시간</p>
+            )}
+            {!busScheduleData?.attendanc && timer}
           </CircularText>
         </CircularBackground>
       </CircularWrapper>

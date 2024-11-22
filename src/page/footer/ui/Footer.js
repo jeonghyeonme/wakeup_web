@@ -23,13 +23,13 @@ const Footer = () => {
         active={activeTab === "stats"}
         onClick={() => setActiveTab("stats")}>
         <FaStar />
-        <span>통계</span>
+        <span>배차</span>
       </NavItem>
       <NavItem
         active={activeTab === "more"}
         onClick={() => setActiveTab("more")}>
         <FaStar />
-        <span>더보기</span>
+        <span>프로필</span>
       </NavItem>
     </NavContainer>
   );

@@ -1,0 +1,18 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#4B0082"/>
+      <stop offset="100%" stop-color="#00CED1"/>
+    </linearGradient>
+  </defs>
+  <g className="layer">
+    <title>Layer 1</title>
+    <g fill="none" id="svg_1" stroke="url(#logoGradient)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+      <ellipse cx="150" cy="100" id="svg_2" rx="100" ry="30" transform="matrix(0.707107 0.707107 -0.707107 0.707107 114.645 -76.7767)"/>
+      <ellipse cx="155" cy="97" id="svg_3" rx="100" ry="30" transform="rotate(-45 155 97)"/>
+      <path d="m50,140l0,-60l40,60" id="svg_4"/>
+      <path d="m100,80l40,0m-40,30l30,0m-30,30l40,0" id="svg_5"/>
+      <path d="m230,80l0,60m-20,-60l40,0" id="svg_6"/>
+    </g>
+  </g>
+</svg>

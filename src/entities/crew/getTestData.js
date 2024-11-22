@@ -64,7 +64,6 @@ const sampleData = {
     ],
   },
 };
-
 const getTestData = (date, name, time) => {
   // 날짜와 이름으로 데이터 검색
   const dateData = sampleData[date];
@@ -86,9 +85,29 @@ const getTestData = (date, name, time) => {
   });
 
   if (filteredData.length === 0) {
-    return null; // 조건에 맞는 데이터가 없는 경우 null 반환
+    // 현재 날짜 데이터가 없으면 다음 날짜 데이터 확인
+    const allDates = Object.keys(sampleData).sort(); // 날짜 정렬
+    const currentIndex = allDates.indexOf(date);
+    if (currentIndex === -1 || currentIndex === allDates.length - 1) {
+      return null; // 현재 날짜가 마지막 날짜거나 찾을 수 없으면 null 반환
+    }
+
+    // 다음 날짜 데이터 검색
+    const nextDate = allDates[currentIndex + 1];
+    const nextDateData = sampleData[nextDate];
+    if (
+      !nextDateData ||
+      !nextDateData[name] ||
+      nextDateData[name].length === 0
+    ) {
+      return null; // 다음 날짜에 이름 데이터가 없는 경우 null 반환
+    }
+
+    // 다음 날짜의 첫 번째 데이터 반환
+    return nextDateData[name][0];
   }
 
+  // 현재 날짜에서 가장 가까운 데이터 찾기
   const closest = filteredData.reduce((closest, item) => {
     const itemTime = new Date(`1970-01-01T${item.time}`).getTime();
     const closestTime = new Date(`1970-01-01T${closest.time}`).getTime();
