@@ -44,7 +44,7 @@ const useLogin = () => {
       const data = getTestData(id, pw);
       setUserIdx(data);
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   };
 

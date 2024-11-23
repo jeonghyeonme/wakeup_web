@@ -23,6 +23,7 @@ const TripPage = () => {
         {tripData?.length === 0 && <NonScheduleWidget />}
         {tripData?.map((schedule) => (
           <TripCard
+            date={date}
             title={schedule.title}
             start={schedule.start_time}
             end={schedule.end_time}

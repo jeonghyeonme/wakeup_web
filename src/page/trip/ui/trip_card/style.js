@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   width: 100%;
   height: 150px;
-  background-color: #f0fff0; /* 연한 녹색 배경 */
+  background-color: ${(props) => (props.isActive ? "#f0fff0" : "#EDEDED")};
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

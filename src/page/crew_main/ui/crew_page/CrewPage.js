@@ -31,7 +31,7 @@ const CrewPage = () => {
     }
   }, [formattedDateShort, data, formattedTime]);
 
-  const timer = useTime(busScheduleData?.time, formattedTime);
+  const timer = useTime(busScheduleData?.start_time, formattedTime);
   const [check, setCheck] = useState(false);
 
   const [clickEnum, fetchClickData] = useClickAlert();
