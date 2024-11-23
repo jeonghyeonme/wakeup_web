@@ -37,12 +37,10 @@ const CrewPage = () => {
   const [clickEnum, fetchClickData] = useClickAlert();
 
   useEffect(() => {
-    if (check && busScheduleData) {
+    if (check && !busScheduleData?.attendanc) {
       fetchClickData(busScheduleData);
     }
   }, [check]);
-
-  useEffect(() => {}, [busScheduleData]);
 
   return (
     <TimerContainer>
@@ -50,7 +48,7 @@ const CrewPage = () => {
         <DateText>기사 : {data?.name}</DateText>
         <DateText>{formattedDate}</DateText>
         <TimeText>
-          배차 시간 :{" "}
+          배차 시간 :
           {busScheduleData ? busScheduleData.start_time : "배차가 없습니다"}
         </TimeText>
         <TimeText>{busScheduleData?.title}</TimeText>

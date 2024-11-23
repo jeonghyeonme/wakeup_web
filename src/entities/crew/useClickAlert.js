@@ -39,7 +39,7 @@ const useClickAlert = () => {
       //   const data = await clickAlertEvent(); 후에 데이터를 실제로 넣을 경우를 위해
       const data = clickTestData();
       setClickAlert(data);
-      alert(`${busScheduleData.time} 출석완료`);
+      alert(`${busScheduleData.start_time} 배차 출석완료`);
     } catch (error) {
       alert(error);
     }
