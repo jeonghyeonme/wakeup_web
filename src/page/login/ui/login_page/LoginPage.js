@@ -39,7 +39,7 @@ const LoginPage = () => {
     <Container>
       <Logo src={logo} alt="NEXT Logo" />
       <InputContainer>
-        <InputPlaceHorder ref={idRef} placeholder="사용자 이름" />
+        <InputPlaceHorder ref={idRef} placeholder="사용자 이름" type="text" />
         <InputLabel>
           <LinkText
             onClick={() => {
@@ -50,7 +50,7 @@ const LoginPage = () => {
         </InputLabel>
       </InputContainer>
       <InputContainer>
-        <InputPlaceHorder ref={pwRef} placeholder="비밀번호" />
+        <InputPlaceHorder ref={pwRef} placeholder="비밀번호" type="password" />
         <InputLabel>
           <LinkText
             onClick={() => {

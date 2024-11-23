@@ -38,7 +38,7 @@ const InputPlaceHorder = forwardRef((props, ref) => {
       <PlaceholderText active={isActive}>{props.placeholder}</PlaceholderText>
       <PlaceholderInput
         ref={inputRef}
-        type="text"
+        type={props.type}
         autoComplete="off"
         value={inputValue}
         onChange={handleInputChange}

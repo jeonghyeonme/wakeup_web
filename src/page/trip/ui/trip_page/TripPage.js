@@ -5,70 +5,31 @@ import Header from "../header/header";
 import useDateAtom from "../../../../shared/recoil/useDateAtom";
 import useGetTripData from "../../../../entities/trip/useGetTripData";
 import { getCookie } from "../../../../shared/cookie/cookie";
-
-const scheduleData = [
-  {
-    id: 1,
-    title: "인천 TO 마포",
-    start: "12:40",
-    end: "01:40",
-    duration: "01:30",
-  },
-  {
-    id: 2,
-    title: "마포 TO 동탄",
-    start: "15:40",
-    end: "01:40",
-    duration: "01:30",
-  },
-  {
-    id: 3,
-    title: "동탄 TO 인천",
-    start: "17:40",
-    end: "01:40",
-    duration: "01:30",
-  },
-  {
-    id: 3,
-    title: "동탄 TO 인천",
-    start: "17:40",
-    end: "01:40",
-    duration: "01:30",
-  },
-  {
-    id: 3,
-    title: "동탄 TO 인천",
-    start: "17:40",
-    end: "01:40",
-    duration: "01:30",
-  },
-  {
-    id: 3,
-    title: "동탄 TO 인천",
-    start: "17:40",
-    end: "01:40",
-    duration: "01:30",
-  },
-];
+import NonScheduleWidget from "../../../../widget/non_schedule/ui/NonSchedule";
 
 const TripPage = () => {
   const [date] = useDateAtom();
-  const [tripData, error, fetchData] = useGetTripData();
+  const [tripData, fetchData] = useGetTripData();
   const cookieData = getCookie("user_data");
 
   useEffect(() => {
-    fetchData(cookieData.user_idx);
+    fetchData(date, cookieData.user_idx);
   }, [date]);
+
+  useEffect(() => {
+    console.log(tripData);
+  }, [tripData]);
 
   return (
     <PageContainer>
       <Header />
       <CardList>
-        {scheduleData.map((schedule) => (
+        {tripData?.length === 0 && <NonScheduleWidget />}
+        {tripData?.map((schedule) => (
           <TripCard
             title={schedule.title}
-            start={schedule.start}
-            end={schedule.end}
+            start={schedule.start_time}
+            end={schedule.end_time}
             duration={schedule.duration}
           />
         ))}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import getTestData from "./getTestData";
+import regexLoginData from "./regexLogin";
 
 const loginEvent = async (input_id, input_pw) => {
   // get은 {} 오브젝트 필요없음
@@ -38,6 +39,7 @@ const useLogin = () => {
 
   const fetchData = async (id, pw) => {
     try {
+      regexLoginData(id, pw);
       //   const data = await loginEvent(id, pw); 후에 데이터를 실제로 넣을 경우를 위해
       const data = getTestData(id, pw);
       setUserIdx(data);

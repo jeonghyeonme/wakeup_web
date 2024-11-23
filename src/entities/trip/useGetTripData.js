@@ -29,19 +29,18 @@ const getGetTripData = async () => {
 
 const useGetTripData = () => {
   const [tripData, setGetTripData] = useState(null);
-  const [error, setError] = useState(false);
 
-  const fetchData = async (date, user_idx, time) => {
+  const fetchData = async (date, user_idx) => {
     try {
-      //   const data = await getGetTripData(date); 후에 데이터를 실제로 넣을 경우를 위해
-      const data = getTestData(date, user_idx, time);
+      //   const data = await getGetTripData(date, user_idx)); 후에 데이터를 실제로 넣을 경우를 위해
+      const data = getTestData(date, user_idx);
       setGetTripData(data);
     } catch (error) {
-      setError(true);
+      setGetTripData([]);
     }
   };
 
-  return [tripData, error, fetchData];
+  return [tripData, fetchData];
 };
 
 export default useGetTripData;
