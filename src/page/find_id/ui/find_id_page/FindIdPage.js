@@ -7,10 +7,13 @@ import {
   InputField,
   SubmitButton,
   InputContainer,
+  ButtonContainer,
 } from "./style";
 import logo from "../../../../shared/assets/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const FindIdPage = () => {
+  const navigate = useNavigate();
   return (
     <PageContainer>
       <Logo src={logo} alt="NEXT Logo" />
@@ -25,7 +28,15 @@ const FindIdPage = () => {
         </InputWrapper>
       </InputContainer>
       <div></div>
-      <SubmitButton>아이디 찾기</SubmitButton>
+      <ButtonContainer>
+        <SubmitButton>아이디 찾기</SubmitButton>
+        <SubmitButton
+          onClick={() => {
+            navigate("/");
+          }}>
+          뒤로가기
+        </SubmitButton>
+      </ButtonContainer>
     </PageContainer>
   );
 };

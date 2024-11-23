@@ -66,3 +66,8 @@ export const SubmitButton = styled.button`
     background-color: #e0e0e0;
   }
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

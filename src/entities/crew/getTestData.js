@@ -54,6 +54,10 @@ const sampleData = {
       { time: "10:00", attendanc: true },
       { time: "11:50", attendanc: true },
       { time: "13:40", attendanc: false },
+      { time: "18:40", attendanc: false },
+      { time: "19:40", attendanc: false },
+      { time: "20:40", attendanc: false },
+      { time: "21:40", attendanc: false },
     ],
     김민준: [
       { time: "06:00", attendanc: false },

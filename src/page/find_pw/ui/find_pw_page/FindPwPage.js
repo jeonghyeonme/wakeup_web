@@ -7,10 +7,13 @@ import {
   InputField,
   SubmitButton,
   InputContainer,
+  ButtonContainer,
 } from "./style";
 import logo from "../../../../shared/assets/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const FindPwPage = () => {
+  const navigate = useNavigate();
   return (
     <PageContainer>
       <Logo src={logo} alt="NEXT Logo" />
@@ -29,7 +32,15 @@ const FindPwPage = () => {
         </InputWrapper>
       </InputContainer>
       <div></div>
-      <SubmitButton>비밀번호 찾기</SubmitButton>
+      <ButtonContainer>
+        <SubmitButton>비밀번호 찾기</SubmitButton>
+        <SubmitButton
+          onClick={() => {
+            navigate("/");
+          }}>
+          뒤로가기
+        </SubmitButton>
+      </ButtonContainer>
     </PageContainer>
   );
 };

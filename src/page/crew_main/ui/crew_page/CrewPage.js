@@ -21,7 +21,7 @@ const CrewPage = () => {
   // date나 name이 변경될 때만 fetchData 실행
   useEffect(() => {
     fetchData(formattedDateShort, name, formattedTime);
-  }, [formattedDate, name, formattedTime]);
+  }, [formattedDateShort, name, formattedTime]);
 
   const timer = useTime(busScheduleData?.time, formattedTime);
   const [check, setCheck] = useState(false);
@@ -31,7 +31,10 @@ const CrewPage = () => {
       <TextContainer>
         <DateText>기사 : {name}</DateText>
         <DateText>{formattedDate}</DateText>
-        <TimeText>배차 시간 : {busScheduleData?.time}</TimeText>
+        <TimeText>
+          배차 시간 :{" "}
+          {busScheduleData ? busScheduleData.time : "배차가 없습니다"}
+        </TimeText>
       </TextContainer>
       <CircularWrapper
         onClick={() => {
