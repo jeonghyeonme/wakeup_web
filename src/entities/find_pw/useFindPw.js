@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import getTestData from "./getTestData";
 import regexData from "./regexFindPwData";
 
-const findIdByPhoneAndCompany = async (name, phoneNumber, companyName) => {
+const findPw = async (id, phoneNumber, companyName) => {
   try {
     const response = await fetch("http://XXX", {
       method: "POST",
@@ -10,7 +10,7 @@ const findIdByPhoneAndCompany = async (name, phoneNumber, companyName) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name,
+        id,
         phone: phoneNumber,
         company: companyName,
       }),
@@ -38,22 +38,22 @@ const findIdByPhoneAndCompany = async (name, phoneNumber, companyName) => {
   }
 };
 
-const useFindId = () => {
-  const [id, setId] = useState(null);
+const useFindPw = () => {
+  const [pw, setPw] = useState(null);
 
-  const fetchData = async (name, phone, company) => {
+  const fetchData = async (id, phone, company) => {
     try {
-      regexData(name, phone, company);
-      //   const data = await findIdByPhoneAndCompany(name,phone,company); 후에 데이터를 실제로 넣을 경우를 위해
-      const data = getTestData(name, phone, company);
-      alert(`찾으시려는 ID 는 ${data} 입니다`);
-      setId(data);
+      regexData(id, phone, company);
+      //   const data = await findPw(id,phone,company); 후에 데이터를 실제로 넣을 경우를 위해
+      const data = getTestData(id, phone, company);
+      alert(`찾으시려는 PW 는 ${data} 입니다`);
+      setPw(data);
     } catch (error) {
       alert(error.message);
     }
   };
 
-  return [id, fetchData];
+  return [pw, setPw, fetchData];
 };
 
-export default useFindId;
+export default useFindPw;
