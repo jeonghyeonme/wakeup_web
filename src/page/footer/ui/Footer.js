@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavContainer, NavItem } from "./style";
 import { FaStar } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import usePageChange from "../model/usePageChange";
 
 const Footer = () => {
@@ -10,7 +9,6 @@ const Footer = () => {
   useEffect(() => {
     pageChange(activeTab);
   }, [activeTab]);
-
   return (
     <NavContainer>
       <NavItem
@@ -20,14 +18,14 @@ const Footer = () => {
         <span>홈</span>
       </NavItem>
       <NavItem
-        active={activeTab === "stats"}
-        onClick={() => setActiveTab("stats")}>
+        active={activeTab === "trip"}
+        onClick={() => setActiveTab("trip")}>
         <FaStar />
         <span>배차</span>
       </NavItem>
       <NavItem
-        active={activeTab === "more"}
-        onClick={() => setActiveTab("more")}>
+        active={activeTab === "profile"}
+        onClick={() => setActiveTab("profile")}>
         <FaStar />
         <span>프로필</span>
       </NavItem>

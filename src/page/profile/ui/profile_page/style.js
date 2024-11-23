@@ -13,6 +13,7 @@ export const PageContainer = styled.div`
 export const Logo = styled.img`
   width: 100px;
   height: auto;
+  margin-top: 40px;
   margin-bottom: 40px;
 `;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   PageContainer,
   Logo,
@@ -9,42 +9,49 @@ import {
   InputContainer,
 } from "./style";
 import logo from "../../../../shared/assets/logo.svg";
+import { deleteAllCookies, getCookie } from "../../../../shared/cookie/cookie";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    deleteAllCookies();
+    navigate("/");
+  };
+  // 한 번만 호출하여 cookieData 저장
+  const initialCookieData = getCookie("user_data");
+  const [data] = useState(initialCookieData);
+  console.log(initialCookieData);
+
+  if (!data) return <p>Loading...</p>;
+
   return (
     <PageContainer>
       <Logo src={logo} alt="NEXT Logo" />
       <InputContainer>
         <InputWrapper>
+          <InputLabel>이름</InputLabel>
+          <InputField type="text" value={data.name} readOnly />
+        </InputWrapper>
+        <InputWrapper>
           <InputLabel>아이디</InputLabel>
-          <InputField type="text" placeholder="아이디를 입력하세요" />
-        </InputWrapper>
-        <InputWrapper>
-          <InputLabel>비밀번호</InputLabel>
-          <InputField type="text" placeholder="비밀번호" />
-        </InputWrapper>
-        <InputWrapper>
-          <InputLabel>비밀번호 확인</InputLabel>
-          <InputField type="text" placeholder="비밀번호 확인" />
+          <InputField type="text" value={data.id} readOnly />
         </InputWrapper>
         <InputWrapper>
           <InputLabel>전화번호</InputLabel>
-          <InputField type="text" placeholder="전화번호를 입력하세요" />
+          <InputField type="text" value={data.phone} readOnly />
         </InputWrapper>
         <InputWrapper>
           <InputLabel>회사</InputLabel>
-          <InputField type="text" placeholder="회사를 입력하세요" />
+          <InputField type="text" value={data.company} readOnly />
         </InputWrapper>
         <InputWrapper>
           <InputLabel>집</InputLabel>
-          <InputField type="text" placeholder="회사를 입력하세요" />
-        </InputWrapper>
-        <InputWrapper>
-          <InputLabel>전화번호</InputLabel>
-          <InputField type="text" placeholder="회사를 입력하세요" />
+          <InputField type="text" value={data.home} readOnly />
         </InputWrapper>
       </InputContainer>
-      <SubmitButton>계정 수정</SubmitButton>
+      <SubmitButton onClick={logout}>로그아웃</SubmitButton>
     </PageContainer>
   );
 };

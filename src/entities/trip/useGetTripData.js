@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import getTestData from "./getTestData";
 
-const getBusScheduleData = async () => {
+const getGetTripData = async () => {
   try {
     const response = await fetch("http://XXX", {});
     const status = response.status;
@@ -27,21 +27,21 @@ const getBusScheduleData = async () => {
   }
 };
 
-const useBusScheduleData = () => {
-  const [busScheduleData, setBusScheduleData] = useState(null);
+const useGetTripData = () => {
+  const [tripData, setGetTripData] = useState(null);
   const [error, setError] = useState(false);
 
   const fetchData = async (date, user_idx, time) => {
     try {
-      //   const data = await getBusScheduleData(date); 후에 데이터를 실제로 넣을 경우를 위해
+      //   const data = await getGetTripData(date); 후에 데이터를 실제로 넣을 경우를 위해
       const data = getTestData(date, user_idx, time);
-      setBusScheduleData(data);
+      setGetTripData(data);
     } catch (error) {
       setError(true);
     }
   };
 
-  return [busScheduleData, error, fetchData];
+  return [tripData, error, fetchData];
 };
 
-export default useBusScheduleData;
+export default useGetTripData;

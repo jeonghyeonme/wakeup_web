@@ -1,13 +1,13 @@
 const sampleData = {
   "2024-11-20": {
-    이지우: [
+    201: [
       { time: "08:30", attendanc: true },
       { time: "09:00", attendanc: false },
       { time: "09:30", attendanc: true },
       { time: "10:00", attendanc: true },
       { time: "11:30", attendanc: false },
     ],
-    김민준: [
+    202: [
       { time: "07:00", attendanc: false },
       { time: "08:15", attendanc: false },
       { time: "09:45", attendanc: true },
@@ -16,14 +16,14 @@ const sampleData = {
     ],
   },
   "2024-11-21": {
-    이지우: [
+    201: [
       { time: "07:15", attendanc: false },
       { time: "08:50", attendanc: true },
       { time: "10:00", attendanc: true },
       { time: "12:30", attendanc: false },
       { time: "14:00", attendanc: true },
     ],
-    김민준: [
+    202: [
       { time: "06:50", attendanc: true },
       { time: "07:45", attendanc: false },
       { time: "09:20", attendanc: true },
@@ -32,14 +32,14 @@ const sampleData = {
     ],
   },
   "2024-11-22": {
-    이지우: [
+    201: [
       { time: "06:30", attendanc: true },
       { time: "08:00", attendanc: false },
       { time: "09:45", attendanc: true },
       { time: "11:20", attendanc: false },
       { time: "13:00", attendanc: true },
     ],
-    김민준: [
+    202: [
       { time: "07:00", attendanc: false },
       { time: "09:10", attendanc: true },
       { time: "10:25", attendanc: false },
@@ -48,7 +48,7 @@ const sampleData = {
     ],
   },
   "2024-11-23": {
-    이지우: [
+    201: [
       { time: "07:10", attendanc: true },
       { time: "08:30", attendanc: false },
       { time: "10:00", attendanc: true },
@@ -59,31 +59,43 @@ const sampleData = {
       { time: "20:40", attendanc: false },
       { time: "21:40", attendanc: false },
     ],
-    김민준: [
+    202: [
       { time: "06:00", attendanc: false },
       { time: "07:45", attendanc: true },
       { time: "09:00", attendanc: true },
       { time: "10:35", attendanc: false },
       { time: "12:50", attendanc: true },
     ],
+    203: [
+      { time: "06:00", attendanc: false },
+      { time: "07:45", attendanc: true },
+      { time: "09:00", attendanc: true },
+      { time: "10:35", attendanc: false },
+      { time: "12:50", attendanc: true },
+      { time: "18:40", attendanc: false },
+      { time: "19:40", attendanc: false },
+      { time: "20:40", attendanc: false },
+      { time: "21:40", attendanc: false },
+    ],
   },
 };
-const getTestData = (date, name, time) => {
-  // 날짜와 이름으로 데이터 검색
+
+const getTestData = (date, userIdx, time) => {
+  // 날짜와 userIdx로 데이터 검색
   const dateData = sampleData[date];
   if (!dateData) {
     return null; // 날짜 데이터가 없는 경우 null 반환
   }
 
-  const nameData = dateData[name];
-  if (!nameData || nameData.length === 0) {
-    return null; // 이름 데이터가 없는 경우 null 반환
+  const userData = dateData[userIdx];
+  if (!userData || userData.length === 0) {
+    return null; // userIdx 데이터가 없는 경우 null 반환
   }
 
   const currentTime = new Date(`1970-01-01T${time}`).getTime();
 
   // 현재 시간 이후의 데이터 중 가장 가까운 데이터 찾기
-  const filteredData = nameData.filter((item) => {
+  const filteredData = userData.filter((item) => {
     const itemTime = new Date(`1970-01-01T${item.time}`).getTime();
     return itemTime > currentTime; // 현재 시간 이후만 포함
   });
@@ -101,14 +113,14 @@ const getTestData = (date, name, time) => {
     const nextDateData = sampleData[nextDate];
     if (
       !nextDateData ||
-      !nextDateData[name] ||
-      nextDateData[name].length === 0
+      !nextDateData[userIdx] ||
+      nextDateData[userIdx].length === 0
     ) {
-      return null; // 다음 날짜에 이름 데이터가 없는 경우 null 반환
+      return null; // 다음 날짜에 userIdx 데이터가 없는 경우 null 반환
     }
 
     // 다음 날짜의 첫 번째 데이터 반환
-    return nextDateData[name][0];
+    return nextDateData[userIdx][0];
   }
 
   // 현재 날짜에서 가장 가까운 데이터 찾기

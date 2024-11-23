@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import FindIdPage from "./ui/find_id_page/FindIdPage";
+import TripPage from "./ui/trip_page/TripPage";
 
-const FindPw = () => {
+const Trip = () => {
   return (
     <Container>
-      <FindIdPage />
+      <TripPage />
     </Container>
   );
 };
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
 `;
 
-export default FindPw;
+export default Trip;

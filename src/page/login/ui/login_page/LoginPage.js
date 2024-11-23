@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Container,
   Logo,
@@ -10,14 +10,36 @@ import {
 import logo from "../../../../shared/assets/logo.svg";
 import InputPlaceHorder from "../input_placehorder/InputPlaceHorder";
 import { useNavigate } from "react-router-dom";
+import useLogin from "../../../../entities/login/useLoginCheck";
+import { setCookie } from "../../../../shared/cookie/cookie";
 
 const LoginPage = () => {
+  const idRef = useRef();
+  const pwRef = useRef();
+
+  const handleClear = () => {
+    idRef.current.clear();
+    pwRef.current.clear();
+  };
+
   const navigate = useNavigate();
+
+  const [userIdx, setUserIdx, fetchData] = useLogin();
+  const loginEvent = (id, pw) => {
+    fetchData(id, pw);
+  };
+
+  useEffect(() => {
+    if (!userIdx) return;
+    setCookie("user_data", userIdx);
+    navigate(`/${userIdx.type}`);
+  }, [userIdx]);
+
   return (
     <Container>
       <Logo src={logo} alt="NEXT Logo" />
       <InputContainer>
-        <InputPlaceHorder />
+        <InputPlaceHorder ref={idRef} placeholder="사용자 이름" />
         <InputLabel>
           <LinkText
             onClick={() => {
@@ -28,7 +50,7 @@ const LoginPage = () => {
         </InputLabel>
       </InputContainer>
       <InputContainer>
-        <InputPlaceHorder />
+        <InputPlaceHorder ref={pwRef} placeholder="비밀번호" />
         <InputLabel>
           <LinkText
             onClick={() => {
@@ -38,7 +60,12 @@ const LoginPage = () => {
           </LinkText>
         </InputLabel>
       </InputContainer>
-      <SubmitButton>로그인</SubmitButton>
+      <SubmitButton
+        onClick={() => {
+          loginEvent(idRef.current.getValue(), pwRef.current.getValue());
+        }}>
+        로그인
+      </SubmitButton>
     </Container>
   );
 };

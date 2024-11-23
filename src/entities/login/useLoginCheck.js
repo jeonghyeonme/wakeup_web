@@ -33,21 +33,20 @@ const loginEvent = async (input_id, input_pw) => {
   console.log(result);
 };
 
-const useBusScheduleData = () => {
-  const [busScheduleData, setBusScheduleData] = useState(null);
-  const [error, setError] = useState(false);
+const useLogin = () => {
+  const [userIdx, setUserIdx] = useState(null);
 
   const fetchData = async (id, pw) => {
     try {
       //   const data = await loginEvent(id, pw); 후에 데이터를 실제로 넣을 경우를 위해
       const data = getTestData(id, pw);
-      setBusScheduleData(data);
+      setUserIdx(data);
     } catch (error) {
-      setError(true);
+      alert(error);
     }
   };
 
-  return [busScheduleData, error, fetchData];
+  return [userIdx, setUserIdx, fetchData];
 };
 
-export default useBusScheduleData;
+export default useLogin;
