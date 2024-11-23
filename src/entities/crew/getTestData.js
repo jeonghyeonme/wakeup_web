@@ -7,7 +7,7 @@ const getTestData = (date, userIdx, time) => {
     return null; // 날짜 데이터가 없는 경우 null 반환
   }
 
-  const userData = dateData[userIdx];
+  const userData = dateData.filter((item) => item.userIdx === userIdx);
   if (!userData || userData.length === 0) {
     return null; // userIdx 데이터가 없는 경우 null 반환
   }
@@ -16,7 +16,7 @@ const getTestData = (date, userIdx, time) => {
 
   // 현재 시간 이후의 데이터 중 가장 가까운 데이터 찾기
   const filteredData = userData.filter((item) => {
-    const itemTime = new Date(`1970-01-01T${item.time}`).getTime();
+    const itemTime = new Date(`1970-01-01T${item.start_time}`).getTime();
     return itemTime > currentTime; // 현재 시간 이후만 포함
   });
 

@@ -16,10 +16,6 @@ const TripPage = () => {
     fetchData(date, cookieData.user_idx);
   }, [date]);
 
-  useEffect(() => {
-    console.log(tripData);
-  }, [tripData]);
-
   return (
     <PageContainer>
       <Header />

@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 
 const useDate = () => {
   const [date, setDate] = useState();
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
+  useEffect(() => {}, [date]);
   return [date, setDate];
 };
 

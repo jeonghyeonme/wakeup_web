@@ -42,6 +42,8 @@ const CrewPage = () => {
     }
   }, [check]);
 
+  useEffect(() => {}, [busScheduleData]);
+
   return (
     <TimerContainer>
       <TextContainer>
@@ -49,8 +51,9 @@ const CrewPage = () => {
         <DateText>{formattedDate}</DateText>
         <TimeText>
           배차 시간 :{" "}
-          {busScheduleData ? busScheduleData.time : "배차가 없습니다"}
+          {busScheduleData ? busScheduleData.start_time : "배차가 없습니다"}
         </TimeText>
+        <TimeText>{busScheduleData?.title}</TimeText>
       </TextContainer>
       <CircularWrapper
         onClick={() => {

@@ -22,7 +22,6 @@ const ProfilePage = () => {
   // 한 번만 호출하여 cookieData 저장
   const initialCookieData = getCookie("user_data");
   const [data] = useState(initialCookieData);
-  console.log(initialCookieData);
 
   if (!data) return <p>Loading...</p>;
 
