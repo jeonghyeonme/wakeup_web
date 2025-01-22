@@ -1,70 +1,190 @@
-# Getting Started with Create React App
+# 🚌 버스기사 기상 관리 애플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![react](https://img.shields.io/badge/React-18.x-blue?logo=react)
+![webview](https://img.shields.io/badge/WebView-Android/iOS-green?logo=android)
+![status](https://img.shields.io/badge/Status-Developing-orange)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 프로젝트 개요
 
-### `npm start`
+**버스기사 기상 관리 애플리케이션**은 **nextSolution** 회사의 외주 개발 프로젝트로, 버스기사의 기상을 효율적으로 관리하기 위해 제작된 **React 기반 웹 애플리케이션**입니다.  
+해당 프로젝트는 **웹뷰(WebView)**를 통해 모바일 환경에서도 최적화된 사용자 경험을 제공합니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🏢 프로젝트 기능 개요
 
-### `npm test`
+### 🎯 **주요 기능**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **사용자 역할 기반 시스템**
 
-### `npm run build`
+  - 관리자: 사원 정보 조회 및 관리 기능 제공
+  - 사원: 개인 스케줄 열람 및 기상 상태 관리
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **반응형 웹 애플리케이션**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - 모바일 환경 최적화 및 웹뷰 내 매끄러운 UI/UX 제공
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **데이터 관리 및 조회**
+  - 출퇴근 시간, 기상 정보 및 일정 관리를 위한 효율적인 인터페이스 제공
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🚀 기술 스택
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| 기술                  | 설명                          |
+| --------------------- | ----------------------------- |
+| **React**             | UI 개발 및 상태 관리          |
+| **WebView**           | 모바일 환경 내 앱 형태로 실행 |
+| **Styled-components** | 컴포넌트 기반 스타일링        |
+| **React Query**       | API 상태 관리 및 캐싱         |
+| **Axios**             | 서버 통신 및 API 호출         |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📂 프로젝트 구조
 
-## Learn More
+```
+📦 .
+├── README.md
+├── public
+│   └── index.html
+└── src
+    ├── app
+    │   ├── index.js
+    │   ├── model
+    │   └── style
+    │       └── GlobalStyle.js
+    ├── entities
+    │   ├── admin
+    │   ├── adminTestData.js
+    │   ├── crew
+    │   ├── find_id
+    │   ├── find_pw
+    │   ├── login
+    │   ├── memberData.js
+    │   ├── scheduleData.js
+    │   └── trip
+    ├── index.js
+    ├── page
+    │   ├── admin_main
+    │   ├── crew_main
+    │   ├── find_id
+    │   ├── find_pw
+    │   ├── footer
+    │   ├── index.js
+    │   ├── login
+    │   ├── profile
+    │   └── trip
+    ├── shared
+    │   ├── assets
+    │   │   └── logo.svg
+    │   ├── cookie
+    │   │   └── cookie.js
+    │   └── recoil
+    │       ├── useCheckAtom.js
+    │       ├── useDateAtom.js
+    │       └── useLoginAtom.js
+    └── widget
+        └── non_schedule
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+57 directories, 88 files
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📱 실행 방법
 
-### Analyzing the Bundle Size
+### 1. 프로젝트 클론
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+git clone https://github.com/your-repo/bus-alarm-app.git
+cd bus-alarm-app
+```
 
-### Making a Progressive Web App
+### 2. 패키지 설치
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm install  # 또는 yarn install
+```
 
-### Advanced Configuration
+### 3. 개발 서버 실행
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm start  # 또는 yarn start
+```
 
-### Deployment
+웹 브라우저에서 `http://localhost:3000`에 접속하여 확인할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## ⚙️ 환경 변수 설정 (`.env`)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+아래와 같이 환경변수를 `.env` 파일에 설정해야 합니다:
+현재 백엔드 개발 작업중으로 사용 불가합니다
+
+```env
+REACT_APP_API_BASE_URL=https://api.example.com
+REACT_APP_WEBVIEW_MODE=true
+```
+
+---
+
+## 📊 주요 기능 설명
+
+1. **로그인 및 권한 부여**
+
+   - JWT 기반의 사용자 인증
+   - 관리자와 사원별 대시보드 분리
+
+2. **스케줄 및 출퇴근 관리**
+
+   - 사원의 출퇴근 스케줄 확인 및 변경
+   - 관리자 권한으로 근태 이력 조회
+
+3. **푸시 알림 기능 (향후 업데이트)**
+   - 일정 및 근무 시작 알림
+
+---
+
+## 🛠️ 배포 및 운영
+
+1. **빌드 명령어 실행**
+
+   ```bash
+   npm run build  # 빌드 파일 생성
+   ```
+
+2. **서버 배포**
+
+   - Netlify, Vercel 또는 AWS S3에 배포 가능
+
+3. **모바일 웹뷰 적용**
+   - React 앱을 웹뷰로 감싸기 위한 Android/iOS 환경 적용
+
+---
+
+## 🤝 기여 방법
+
+1. 이슈를 생성하여 버그 또는 기능 요청을 등록합니다.
+2. `feature/branch-name` 브랜치를 생성 후 변경사항을 반영합니다.
+3. PR(Pull Request)을 제출하여 코드 리뷰를 요청합니다.
+
+---
+
+## 📄 라이선스
+
+해당 프로젝트는 nextSolution의 사내 프로젝트로, 외부 배포 및 무단 사용을 금합니다.
+
+---
+
+## 📞 문의하기
+
+- 프로젝트 관련 문의: [hanmw110@naver.com](mailto:hanmw110@naver.com)
+- GitHub 이슈를 통해 버그 및 기능 요청 가능
+
+---
+
+이 README는 프로젝트의 전반적인 개요 및 실행 방법을 이해하기 쉽게 작성되었습니다. 필요에 따라 내용을 추가 및 수정할 수 있습니다. 😊
