@@ -1,23 +1,15 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../../shared/cookie/cookie";
 
-const usePageChange = () => {
+const usePageChange = (initialTab = "home") => {
+  const [activeTab, setActiveTab] = useState(initialTab);
   const navigate = useNavigate();
 
-  const handleRouteChange = (path) => {
-    const cookieData = getCookie("user_data");
-    if (!cookieData) {
-      alert("잘못된 접속");
-      navigate("/");
-    }
-    navigate(path); // 원하는 경로로 변경
-    if (path === "home") {
-      navigate(`/${cookieData.type}`);
-    }
-  };
+  useEffect(() => {
+    navigate(activeTab);
+  }, [activeTab, navigate]);
 
-  return handleRouteChange;
+  return { activeTab, setActiveTab };
 };
 
 export default usePageChange;
