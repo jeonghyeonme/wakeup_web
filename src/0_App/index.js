@@ -5,7 +5,7 @@ import { CookiesProvider } from "react-cookie";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 
-import GlobalStyle from "./style/GlobalStyle.js";
+import GlobalStyle from "./style/globalStyle.js";
 import ResetStyle from "./style/resetStyle.js";
 import theme from "./style/theme.js";
 import STYLE from "./style/style.js";
@@ -15,9 +15,9 @@ const App = () => {
     <CookiesProvider>
       <RecoilRoot>
         <BrowserRouter>
-          <GlobalStyle />
-          <ResetStyle />
           <ThemeProvider theme={theme.defaultTheme}>
+            <GlobalStyle />
+            <ResetStyle />
             <PC>
               <STYLE.Main>
                 <Page />

@@ -1,7 +1,16 @@
-import { useState, useEffect } from "react";
-import getTestData from "./getTestData";
+import adminTestData from "../adminTestData";
+const isDevelopment = process.env.NODE_ENV === "development";
 
-const getBusUserData = async () => {
+const getTestData = (date) => {
+  return adminTestData.filter((userData) => userData.date === date);
+};
+
+const getBusDriverDateData = async (date) => {
+  if (isDevelopment) {
+    // 개발 모드에서는 테스트 데이터를 반환
+    console.log("개발 모드: 테스트 데이터를 반환합니다.");
+    return getTestData(date);
+  }
   try {
     const response = await fetch("http://XXX", {});
     const status = response.status;
@@ -27,21 +36,4 @@ const getBusUserData = async () => {
   }
 };
 
-const useBusUserData = () => {
-  const [busUserData, setBusUserData] = useState([]);
-  const [error, setError] = useState(false);
-
-  const fetchData = async (date) => {
-    try {
-      //   const data = await getBusUserData(date); 후에 데이터를 실제로 넣을 경우를 위해
-      const data = getTestData(date);
-      setBusUserData(data);
-    } catch (error) {
-      setError(true);
-    }
-  };
-
-  return [busUserData, error, fetchData];
-};
-
-export default useBusUserData;
+export default getBusDriverDateData;
