@@ -2,7 +2,7 @@ import Header from "./ui/header/header";
 import UserShape from "./ui/user_shape/UserShape";
 import styled from "styled-components";
 
-const Admin = () => {
+const AdminMain = () => {
   return (
     <Container>
       <Header />
@@ -16,4 +16,4 @@ const Container = styled.div`
   height: 90vh;
 `;
 
-export default Admin;
+export default AdminMain;

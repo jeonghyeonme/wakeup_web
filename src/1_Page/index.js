@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import Admin from "./admin_main";
+import Admin from "./AdminMain";
 import Footer from "./footer";
 import Crew from "./crew_main";
 import Login from "./login";

@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./style/GlobalStyle.js";
 import ResetStyle from "./style/resetStyle.js";
 import theme from "./style/theme.js";
+import STYLE from "./style/style.js";
 
 const App = () => {
   return (
@@ -18,10 +19,14 @@ const App = () => {
           <ResetStyle />
           <ThemeProvider theme={theme.defaultTheme}>
             <PC>
-              <Page />
+              <STYLE.Main>
+                <Page />
+              </STYLE.Main>
             </PC>
             <Mobile>
-              <Page />
+              <STYLE.Main>
+                <Page />
+              </STYLE.Main>
             </Mobile>
           </ThemeProvider>
         </BrowserRouter>
