@@ -1,7 +1,8 @@
 import React from "react";
 import STYLE from "./style";
 
-const InputField = ({ label, type, placeholder, register, error }) => {
+const InputField = (props) => {
+  const { label, type, placeholder, register, error } = props;
   return (
     <STYLE.InputWrapper>
       <STYLE.InputLabel>{label}</STYLE.InputLabel>
