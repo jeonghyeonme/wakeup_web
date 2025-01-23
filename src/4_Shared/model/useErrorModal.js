@@ -6,7 +6,6 @@ const useErrorModal = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const toggleModal = useCallback(() => {
-    console.log("토글 실행");
     setModalOpen((prev) => !prev);
   }, []);
 
@@ -31,6 +30,7 @@ const useErrorModal = () => {
     isModalOpen,
     showErrorModal,
     errorModalBackPage,
+    toggleModal,
   };
 };
 

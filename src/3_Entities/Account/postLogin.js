@@ -1,6 +1,10 @@
+import loginTest from "./loginTest";
 const BASE_URL = process.env.REACT_APP_API_URL || "https://api.example.com";
+const isDevelopment = process.env.NODE_ENV === "development";
 
-const postLogin = async ({ id, pw }) => {
+const postLogin = async (id, pw) => {
+  if (isDevelopment) return loginTest(id, pw);
+
   try {
     const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",

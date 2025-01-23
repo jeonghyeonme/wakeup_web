@@ -1,5 +1,5 @@
-import memberData from "../memberData";
-const getTestData = (id, pw) => {
+import memberData from "../0_exampleData/memberData";
+const loginTest = (id, pw) => {
   // 테스트 목적으로 id와 pw를 기반으로 user_idx를 생성
 
   // 데이터베이스에서 id와 pw가 일치하는 사용자 검색
@@ -14,4 +14,4 @@ const getTestData = (id, pw) => {
   }
 };
 
-export default getTestData;
+export default loginTest;
