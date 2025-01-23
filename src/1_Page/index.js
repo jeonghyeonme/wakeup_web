@@ -3,7 +3,7 @@ import AdminPage from "./AdminPage";
 import Footer from "./Footer";
 import CrewPage from "./CrewPage";
 // import Login from "./login";
-// import FindId from "./find_id";
+import FindIdPage from "./FindIdPage";
 // import FindPw from "./find_pw";
 // import Profile from "./profile";
 // import Trip from "./trip";
@@ -18,7 +18,7 @@ const Page = () => {
     <>
       <Routes>
         {/* <Route path="/" element={<Login />} /> */}
-        {/* <Route path="/findId" element={<FindId />} /> */}
+        <Route path="/findId" element={<FindIdPage />} />
         {/* <Route path="/findPw" element={<FindPw />} /> */}
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/crew" element={<CrewPage />} />
