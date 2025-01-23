@@ -16,9 +16,7 @@ const LoginPage = () => {
 
       <STYLE.Form>
         <InputPlaceHorder ref={idRef} placeholder="아이디" type="text" />
-
         <InputPlaceHorder ref={pwRef} placeholder="비밀번호" type="password" />
-
         <STYLE.SubmitButton>로그인</STYLE.SubmitButton>
 
         <STYLE.AdditionalLinks>

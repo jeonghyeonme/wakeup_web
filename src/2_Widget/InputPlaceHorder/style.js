@@ -10,7 +10,7 @@ const STYLE = {
 
   PlaceholderText: styled.p`
     position: absolute;
-    width: 80%;
+    width: 100%;
     padding: 12px;
     pointer-events: none;
     transition: all 0.3s ease-in-out;
@@ -19,12 +19,11 @@ const STYLE = {
     font-weight: 500;
     letter-spacing: 0.5px;
     top: ${(props) => (props.active ? "5px" : "50%")};
-    left: 10%;
     transform: translateY(-50%);
   `,
 
   PlaceholderInput: styled.input`
-    width: 80%;
+    width: 100%;
     height: 55px;
     border: none;
     outline: none;
