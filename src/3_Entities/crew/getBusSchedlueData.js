@@ -5,7 +5,7 @@ const getBusScheduleData = async (date, userIdx, time) => {
   if (isDevelopment) {
     // 개발 모드에서는 테스트 데이터를 반환
     console.log("개발 모드: 테스트 데이터를 반환합니다.", date, userIdx, time);
-    return findUpcomingSchedule("2024-11-20", "204", time);
+    return findUpcomingSchedule("2024-11-20", userIdx, "14:00");
   }
   try {
     const response = await fetch("http://XXX", { date });

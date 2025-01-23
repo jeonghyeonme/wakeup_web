@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
-import {
-  TimerContainer,
-  DateText,
-  TimeText,
-  CircularWrapper,
-  CircularBackground,
-  CircularText,
-  TextContainer,
-} from "./style";
+import React, { useState } from "react";
+import { TimerContainer, DateText, TimeText, TextContainer } from "./style";
 import useManageDate from "./model/useManageDate";
-import useManageTime from "./model/useManageTime";
 import useGetBusScheduleData from "./model/useGetBusScheduleData";
 import useGetUserMyInfo from "./model/useGetUserMyInfo";
 
-import ErrorModal from "../../2_Widget/ConfirmModal";
+import CircularTimer from "./ui/CircularTimer";
 
-import putScheduleAlert from "../../3_Entities/Crew/putScheduleAlert";
+import ErrorModal from "../../2_Widget/ConfirmModal";
 
 import useErrorModal from "../../4_Shared/model/useErrorModal";
 
@@ -38,21 +29,6 @@ const CrewPage = () => {
     presentFormattedTimeShort
   );
 
-  const { formattedTime } = useManageTime(
-    busScheduleData?.start_time,
-    presentFormattedTime
-  );
-
-  const [check, setCheck] = useState(false);
-
-  const handleClickAttendace = async () => {
-    if (!busScheduleData) return;
-    const result = await putScheduleAlert();
-    if (result) {
-      setCheck(true);
-    }
-  };
-
   return (
     <>
       <TimerContainer>
@@ -65,20 +41,10 @@ const CrewPage = () => {
           </TimeText>
           <TimeText>{busScheduleData?.title}</TimeText>
         </TextContainer>
-        <CircularWrapper onClick={handleClickAttendace}>
-          <CircularBackground attendanc={busScheduleData?.attendanc || check}>
-            <CircularText>
-              {busScheduleData?.attendanc || check ? (
-                <p>출석 완료</p>
-              ) : (
-                <>
-                  <p>남은 시간</p>
-                  <p>{formattedTime}</p>
-                </>
-              )}
-            </CircularText>
-          </CircularBackground>
-        </CircularWrapper>
+        <CircularTimer
+          presentFormattedTime={presentFormattedTime}
+          busScheduleData={busScheduleData}
+        />
       </TimerContainer>
       {isModalOpen && (
         <ErrorModal
