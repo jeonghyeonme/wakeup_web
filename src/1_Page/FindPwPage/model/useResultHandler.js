@@ -10,15 +10,14 @@ const useResultHandler = () => {
 
   // 폼 제출 핸들러
   const onSubmit = async (data) => {
-    console.log("입력된 데이터:", data);
-    const { result, sucsess, message } = await postFindPw(data);
-
-    if (sucsess) {
+    try {
+      const result = await postFindPw(data);
       setMessage(result);
-    } else {
-      setMessage(message);
+      toggleModal();
+    } catch (error) {
+      setMessage(error.message);
+      toggleModal();
     }
-    toggleModal();
   };
 
   const closeModalToLogin = () => {

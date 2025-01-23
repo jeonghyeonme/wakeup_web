@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useModalHandler from "../../../4_Shared/model/useModalHandler";
-import postFindPw from "../../../3_Entities/Account/postFindPw";
+import postFindId from "../../../3_Entities/Account/postFindId";
 import { useNavigate } from "react-router-dom";
 
 const useResultHandler = () => {
@@ -10,15 +10,14 @@ const useResultHandler = () => {
 
   // 폼 제출 핸들러
   const onSubmit = async (data) => {
-    console.log("입력된 데이터:", data);
-    const { result, sucsess, message } = await postFindPw(data);
-
-    if (sucsess) {
+    try {
+      const result = await postFindId(data);
       setMessage(result);
-    } else {
-      setMessage(message);
+      toggleModal();
+    } catch (error) {
+      setMessage(error.message);
+      toggleModal();
     }
-    toggleModal();
   };
 
   const closeModalToLogin = () => {

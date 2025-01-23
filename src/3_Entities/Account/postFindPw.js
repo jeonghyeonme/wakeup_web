@@ -2,8 +2,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
 const TEST_TOKEN = process.env.REACT_APP_API_TOKEN;
 
 const postFindPw = async (data) => {
-  let message;
-  if (isDevelopment) return { sucsess: true, result: "123", message };
+  if (isDevelopment) return 123;
 
   try {
     const response = await fetch("http://XXX/api/getSchedule", {
@@ -19,17 +18,13 @@ const postFindPw = async (data) => {
       return await response.json();
     }
 
-    if (response.status === 404) {
-      message = "등록된 이메일이 없습니다.";
-    } else if (response.status === 500) {
-      message = "서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
-    } else {
-      message = "알 수 없는 오류가 발생했습니다.";
+    if (!response.ok) {
+      throw new Error(response.status);
     }
 
-    return { sucesss: true, result: response, message };
+    return response;
   } catch (error) {
-    return null;
+    throw new Error(error.message);
   }
 };
 
