@@ -16,7 +16,7 @@ const getRandomMember = (memberData) => {
 const getMyInfo = async (date, userIdx, time) => {
   if (isDevelopment) {
     const memeber = memberData.filter((item) => item.idx == TEST_USER_IDX);
-    return memeber;
+    return memeber[0];
     // 개발 모드에서는 테스트 데이터를 반환
     console.log("개발 모드: 랜덤 테스트 데이터를 반환합니다.");
     return getRandomMember(memberData);
