@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const usePageChange = (initialTab = "home") => {
+const usePageChange = (initialTab = "crew") => {
   const [activeTab, setActiveTab] = useState(initialTab);
   const navigate = useNavigate();
 

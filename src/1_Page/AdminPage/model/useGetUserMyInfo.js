@@ -1,12 +1,17 @@
 import { useEffect, useState, useCallback } from "react";
 import getMyInfo from "../../../3_Entities/Account/getMyInfo";
+import { useNavigate } from "react-router-dom";
 
 const useGetUserMyInfo = (showErrorModal) => {
   const [userInfo, setUserInfo] = useState([]);
+  const navigate = useNavigate();
 
   const fetchUserInfo = useCallback(async () => {
     try {
       const userInfoData = await getMyInfo();
+      if (userInfoData.type === "crew") {
+        navigate("/crew");
+      }
       if (userInfoData.type !== "admin") {
         showErrorModal("잘못된 권한입니다");
       }

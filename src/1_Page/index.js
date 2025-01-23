@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import AdminPage from "./AdminPage";
-// import Footer from "./footer";
+import Footer from "./Footer";
 import CrewPage from "./CrewPage";
 // import Login from "./login";
 // import FindId from "./find_id";
@@ -25,7 +25,7 @@ const Page = () => {
         {/* <Route path="/profile" element={<Profile />} /> */}
         {/* <Route path="/trip" element={<Trip />} /> */}
       </Routes>
-      {/* {!noFooterRoutes.includes(location.pathname.toLowerCase()) && <Footer />} */}
+      {!noFooterRoutes.includes(location.pathname.toLowerCase()) && <Footer />}
     </>
   );
 };
