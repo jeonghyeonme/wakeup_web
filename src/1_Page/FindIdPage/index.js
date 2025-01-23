@@ -34,7 +34,8 @@ const FindIdPage = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const { message, toggleModal, isModalOpen, onSubmit } = useResultHandler();
+  const { message, closeModalToLogin, isModalOpen, onSubmit } =
+    useResultHandler();
 
   return (
     <>
@@ -74,7 +75,11 @@ const FindIdPage = () => {
         </STYLE.ButtonContainer>
       </STYLE.PageContainer>
       {isModalOpen && (
-        <ConfirmModal message={message} onClose={toggleModal} type="one" />
+        <ConfirmModal
+          message={message}
+          onClose={closeModalToLogin}
+          type="one"
+        />
       )}
     </>
   );
