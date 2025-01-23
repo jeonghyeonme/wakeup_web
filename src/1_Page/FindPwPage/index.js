@@ -71,7 +71,7 @@ const FindPwPage = () => {
           </STYLE.SubmitButton>
           <STYLE.SubmitButton
             onClick={() => {
-              navigate("/");
+              navigate("/login");
             }}>
             뒤로가기
           </STYLE.SubmitButton>

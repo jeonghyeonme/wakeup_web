@@ -69,7 +69,7 @@ const FindIdPage = () => {
           <STYLE.SubmitButton type="submit" onClick={handleSubmit(onSubmit)}>
             아이디 찾기
           </STYLE.SubmitButton>
-          <STYLE.SubmitButton onClick={() => navigate("/")}>
+          <STYLE.SubmitButton onClick={() => navigate("/login")}>
             뒤로가기
           </STYLE.SubmitButton>
         </STYLE.ButtonContainer>

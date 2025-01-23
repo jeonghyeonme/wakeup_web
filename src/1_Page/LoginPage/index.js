@@ -1,0 +1,37 @@
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { STYLE } from "./style";
+import logo from "../../4_Shared/assets/logo.svg";
+import InputPlaceHorder from "../../2_Widget/InputPlaceHorder";
+
+const LoginPage = () => {
+  const idRef = useRef();
+  const pwRef = useRef();
+  const navigate = useNavigate();
+
+  return (
+    <STYLE.Container>
+      <STYLE.Logo src={logo} alt="NEXT Logo" />
+
+      <STYLE.Form>
+        <InputPlaceHorder ref={idRef} placeholder="아이디" type="text" />
+
+        <InputPlaceHorder ref={pwRef} placeholder="비밀번호" type="password" />
+
+        <STYLE.SubmitButton>로그인</STYLE.SubmitButton>
+
+        <STYLE.AdditionalLinks>
+          <STYLE.LinkText onClick={() => navigate("/findid")}>
+            아이디 찾기
+          </STYLE.LinkText>
+          <STYLE.LinkText onClick={() => navigate("/findpw")}>
+            비밀번호 찾기
+          </STYLE.LinkText>
+        </STYLE.AdditionalLinks>
+      </STYLE.Form>
+    </STYLE.Container>
+  );
+};
+
+export default LoginPage;

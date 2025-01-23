@@ -4,11 +4,7 @@ import React, {
   useRef,
   useImperativeHandle,
 } from "react";
-import {
-  PlaceholderContainer,
-  PlaceholderText,
-  PlaceholderInput,
-} from "./style";
+import STYLE from "./style";
 
 const InputPlaceHorder = forwardRef((props, ref) => {
   const inputRef = useRef();
@@ -34,9 +30,11 @@ const InputPlaceHorder = forwardRef((props, ref) => {
   }));
 
   return (
-    <PlaceholderContainer>
-      <PlaceholderText active={isActive}>{props.placeholder}</PlaceholderText>
-      <PlaceholderInput
+    <STYLE.PlaceholderContainer>
+      <STYLE.PlaceholderText active={isActive}>
+        {props.placeholder}
+      </STYLE.PlaceholderText>
+      <STYLE.PlaceholderInput
         ref={inputRef}
         type={props.type}
         autoComplete="off"
@@ -44,7 +42,7 @@ const InputPlaceHorder = forwardRef((props, ref) => {
         onChange={handleInputChange}
         active={isActive}
       />
-    </PlaceholderContainer>
+    </STYLE.PlaceholderContainer>
   );
 });
 
