@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import getBusSchedlueData from "../../../3_Entities/crew/getBusSchedlueData";
+import getBusSchedlueData from "../../../3_Entities/Crew/getBusSchedlueData";
 
 const useGetBusScheduleData = (date, userIdx, time) => {
   const [busScheduleData, setBusScheduleData] = useState([]);

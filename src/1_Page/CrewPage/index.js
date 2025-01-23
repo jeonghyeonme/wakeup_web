@@ -12,7 +12,7 @@ import useManageDate from "./model/useManageDate";
 import useManageTime from "./model/useManageTime";
 import useGetBusScheduleData from "./model/useGetBusScheduleData";
 
-import putScheduleAlert from "../../3_Entities/crew/putScheduleAlert";
+import putScheduleAlert from "../../3_Entities/Crew/putScheduleAlert";
 import useGetUserMyInfo from "../AdminPage/model/useGetUserMyInfo";
 
 const CrewPage = () => {
@@ -24,6 +24,7 @@ const CrewPage = () => {
   } = useManageDate();
 
   const { userInfo } = useGetUserMyInfo();
+
   const { busScheduleData } = useGetBusScheduleData(
     formattedDateShort,
     userInfo.idx,
@@ -59,7 +60,9 @@ const CrewPage = () => {
         onClick={() => {
           setCheck(true);
         }}>
-        <CircularBackground attendanc={busScheduleData?.attendanc || check}>
+        <CircularBackground
+          onClick={handleClickAttendace}
+          attendanc={busScheduleData?.attendanc || check}>
           <CircularText>
             {busScheduleData?.attendanc || check ? (
               <p>출석 완료</p>

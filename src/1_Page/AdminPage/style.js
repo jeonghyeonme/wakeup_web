@@ -7,7 +7,6 @@ const STYLE = {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: white;
     align-items: center;
     justify-content: end;
     padding: 10px;
@@ -17,7 +16,6 @@ const STYLE = {
   DateText: styled.span`
     font-size: 22px;
     font-weight: 700;
-    color: #333;
     cursor: pointer;
     width: 90%;
   `,
@@ -28,6 +26,12 @@ const STYLE = {
     height: 1px;
     opacity: 0;
     pointer-events: auto; /* 포커스를 받을 수 있도록 설정 */
+  `,
+  ScheduleContainer: styled.div`
+    position: relative;
+    top: 10vh;
+    min-height: calc(100vh - 10vh);
+    width: 100%;
   `,
   UserContainer: styled.div`
     display: flex;

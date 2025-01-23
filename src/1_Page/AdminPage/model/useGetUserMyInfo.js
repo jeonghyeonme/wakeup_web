@@ -7,7 +7,7 @@ const useGetUserMyInfo = (showErrorModal) => {
   const fetchUserInfo = useCallback(async () => {
     try {
       const userInfoData = await getMyInfo();
-      setUserInfo((prev) => [...prev, ...userInfoData]);
+      setUserInfo(userInfoData);
     } catch (error) {
       showErrorModal(error.message);
     }

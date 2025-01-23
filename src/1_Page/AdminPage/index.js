@@ -1,5 +1,5 @@
 import STYLE from "./style";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import useGetBusDriverDate from "./model/useGetBusDriverDate";
 import useManageDriverDate from "./model/useManageDriverDate";
@@ -43,7 +43,9 @@ const AdminPage = () => {
         />
       </STYLE.HeaderTag>
       {displayDriverDateData.length === 0 ? (
-        <NonSchedule />
+        <STYLE.ScheduleContainer>
+          <NonSchedule />
+        </STYLE.ScheduleContainer>
       ) : (
         <STYLE.UserContainer>
           {displayDriverDateData.map((busUser) => (
