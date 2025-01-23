@@ -55,6 +55,7 @@ const findUpcomingSchedule = (date, userIdx, time) => {
 
     return itemTime < closestTime ? item : closest;
   });
+
   return closest; // 가장 가까운 데이터 반환
 };
 

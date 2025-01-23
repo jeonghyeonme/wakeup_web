@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const useErrorModal = () => {
@@ -6,6 +6,7 @@ const useErrorModal = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const toggleModal = useCallback(() => {
+    console.log("토글 실행");
     setModalOpen((prev) => !prev);
   }, []);
 

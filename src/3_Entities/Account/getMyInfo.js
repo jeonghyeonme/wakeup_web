@@ -2,6 +2,7 @@ import memberData from "../0_exampleData/memberData";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 const TEST_TOKEN = process.env.REACT_APP_API_TOKEN;
+const TEST_USER_IDX = process.env.REACT_APP_TEST_USERIDX;
 
 const getRandomMember = (memberData) => {
   if (!Array.isArray(memberData) || memberData.length === 0) {
@@ -14,8 +15,10 @@ const getRandomMember = (memberData) => {
 
 const getMyInfo = async (date, userIdx, time) => {
   if (isDevelopment) {
+    const memeber = memberData.filter((item) => item.idx == TEST_USER_IDX);
+    return memeber;
     // 개발 모드에서는 테스트 데이터를 반환
-    console.log("개발 모드: 테스트 데이터를 반환합니다.");
+    console.log("개발 모드: 랜덤 테스트 데이터를 반환합니다.");
     return getRandomMember(memberData);
   }
 

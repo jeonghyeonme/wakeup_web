@@ -7,11 +7,11 @@ const useGetBusScheduleData = (date, userIdx, time) => {
   const fetchDateDriver = useCallback(async () => {
     try {
       const busScheduleData = await getBusSchedlueData(date, userIdx, time);
-      setBusScheduleData((prev) => [...prev, ...busScheduleData]);
+      setBusScheduleData(busScheduleData);
     } catch (error) {
       console.error("버스 기사 데이터를 가져오는 중 오류 발생:", error.message);
     }
-  }, [date]);
+  }, [date, userIdx, time]);
 
   useEffect(() => {
     fetchDateDriver();

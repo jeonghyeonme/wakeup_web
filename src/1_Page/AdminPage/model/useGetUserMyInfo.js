@@ -7,17 +7,14 @@ const useGetUserMyInfo = (showErrorModal) => {
   const fetchUserInfo = useCallback(async () => {
     try {
       const userInfoData = await getMyInfo();
+      if (userInfoData.type !== "admin") {
+        showErrorModal("잘못된 권한입니다");
+      }
       setUserInfo(userInfoData);
     } catch (error) {
       showErrorModal(error.message);
     }
   }, []);
-
-  useEffect(() => {
-    if (userInfo.type !== "admin") {
-      showErrorModal("잘못된 권한입니다");
-    }
-  }, [userInfo]);
 
   useEffect(() => {
     fetchUserInfo();
