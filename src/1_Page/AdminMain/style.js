@@ -3,6 +3,11 @@ import styled from "styled-components";
 const STYLE = {
   HeaderTag: styled.div`
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
     align-items: center;
     justify-content: end;
     padding: 10px;
@@ -28,7 +33,8 @@ const STYLE = {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 90vh;
+    min-height: 90vh; /* 변경 */
+    margin-top: 10vh;
     justify-content: start;
     align-items: center;
   `,

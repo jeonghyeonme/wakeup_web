@@ -4,11 +4,12 @@ const STYLE = {
   Container: styled.div`
     background-color: ${({ wakeup }) => (wakeup ? "#eff7eb" : "#FEC3C3")};
     padding: 10px 15px;
+    width: 80%;
+    height: 80px;
+
     border-radius: 8px;
     display: inline-flex;
     align-items: center;
-    width: 360px;
-    height: 80px;
     margin-bottom: 30px;
     cursor: pointer;
   `,

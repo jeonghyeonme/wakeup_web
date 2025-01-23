@@ -37,7 +37,6 @@ const AdminPage = () => {
           onChange={handleDateChange}
         />
       </STYLE.HeaderTag>
-      {console.log(displayDriverDateData)}
       {displayDriverDateData.length === 0 ? (
         <NonSchedule />
       ) : (
