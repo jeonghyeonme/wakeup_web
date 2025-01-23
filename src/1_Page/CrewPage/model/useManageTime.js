@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 
-const useTime = (scheduleTime, currentTime) => {
+const useManageTime = (scheduleTime, presentFormattedTime) => {
   const [remainingTime, setRemainingTime] = useState(0);
 
   useEffect(() => {
-    if (!scheduleTime || !currentTime) {
+    if (!scheduleTime || !presentFormattedTime) {
       setRemainingTime(0); // 스케줄 시간이나 현재 시간이 없으면 0초로 설정
       return;
     }
 
     // 남은 시간을 초 단위로 계산
     const calculateRemainingTime = () => {
-      const currentTimestamp = new Date(`1970-01-01T${currentTime}`).getTime();
+      const currentTimestamp = new Date(
+        `1970-01-01T${presentFormattedTime}`
+      ).getTime();
       const scheduleTimestamp = new Date(
         `1970-01-01T${scheduleTime}`
       ).getTime();
@@ -33,7 +35,7 @@ const useTime = (scheduleTime, currentTime) => {
     }, 1000);
 
     return () => clearInterval(timer); // 컴포넌트가 언마운트되면 타이머 정리
-  }, [scheduleTime, currentTime]);
+  }, [scheduleTime, presentFormattedTime]);
 
   // 초를 시, 분, 초로 포맷
   const formattedTime =
@@ -47,7 +49,7 @@ const useTime = (scheduleTime, currentTime) => {
           .padStart(2, "0")}`
       : "00:00:00";
 
-  return formattedTime;
+  return { formattedTime };
 };
 
-export default useTime;
+export default useManageTime;

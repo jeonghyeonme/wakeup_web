@@ -8,41 +8,47 @@ import {
   CircularText,
   TextContainer,
 } from "./style";
-import useDate from "../../model/useDate";
-import useTime from "../../model/useTime";
+import useManageDate from "./model/useManageDate";
+import useManageTime from "./model/useManageTime";
+import useGetBusScheduleData from "./model/useGetBusScheduleData";
 
-import useBusScheduleData from "../../../../entities/crew/useBusScheduleData";
-
-import useClickAlert from "../../../../entities/crew/useClickAlert";
+import putScheduleAlert from "../../3_Entities/crew/putScheduleAlert";
+import useGetUserMyInfo from "../AdminPage/model/useGetUserMyInfo";
 
 const CrewPage = () => {
-  const [data, setData] = useState(null);
+  const {
+    formattedDateKorea,
+    formattedDateShort,
+    presentFormattedTime,
+    presentFormattedTimeShort,
+  } = useManageDate();
 
-  const [formattedDate, formattedDateShort, formattedTime] = useDate();
-  const [busScheduleData, error, fetchData] = useBusScheduleData();
+  const { userInfo } = useGetUserMyInfo();
+  const { busScheduleData } = useGetBusScheduleData(
+    formattedDateShort,
+    userInfo.idx,
+    presentFormattedTimeShort
+  );
 
-  useEffect(() => {
-    if (data !== null) {
-      fetchData(formattedDateShort, data.user_idx, formattedTime);
-    }
-  }, [formattedDateShort, data, formattedTime]);
+  const { formattedTime } = useManageTime(
+    busScheduleData?.start_time,
+    presentFormattedTime
+  );
 
-  const timer = useTime(busScheduleData?.start_time, formattedTime);
   const [check, setCheck] = useState(false);
 
-  const [clickEnum, fetchClickData] = useClickAlert();
-
-  useEffect(() => {
-    if (check && !busScheduleData?.attendanc) {
-      fetchClickData(busScheduleData);
+  const handleClickAttendace = async () => {
+    const result = await putScheduleAlert();
+    if (result) {
+      setCheck(true);
     }
-  }, [check]);
+  };
 
   return (
     <TimerContainer>
       <TextContainer>
-        <DateText>기사 : {data?.name}</DateText>
-        <DateText>{formattedDate}</DateText>
+        <DateText>기사 : {busScheduleData?.name}</DateText>
+        <DateText>{formattedDateKorea}</DateText>
         <TimeText>
           배차 시간 :
           {busScheduleData ? busScheduleData.start_time : "배차가 없습니다"}
@@ -60,7 +66,7 @@ const CrewPage = () => {
             ) : (
               <>
                 <p>남은 시간</p>
-                <p>{timer}</p>
+                <p>{formattedTime}</p>
               </>
             )}
           </CircularText>

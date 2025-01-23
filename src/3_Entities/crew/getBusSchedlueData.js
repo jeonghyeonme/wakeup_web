@@ -1,14 +1,11 @@
-import scheduleData from "../0_exampleData/scheduleData";
+import findUpcomingSchedule from "./findUpcomingSchedule";
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const getTestData = (date) => {
-  return scheduleData.filter((userData) => userData.date === date);
-};
-const getBusScheduleData = async (date) => {
+const getBusScheduleData = async (date, userIdx, time) => {
   if (isDevelopment) {
     // 개발 모드에서는 테스트 데이터를 반환
     console.log("개발 모드: 테스트 데이터를 반환합니다.");
-    return getTestData(date);
+    return findUpcomingSchedule(date, userIdx, time);
   }
   try {
     const response = await fetch("http://XXX", { date });

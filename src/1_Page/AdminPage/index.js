@@ -7,12 +7,17 @@ import useDate from "./model/useDate";
 
 import UserBox from "./ui/UserBox";
 import NonSchedule from "../../2_Widget/NonSchedule";
+import useGetUserMyInfo from "./model/useGetUserMyInfo";
+import ErrorModal from "../../2_Widget/ConfirmModal";
+import useErrorModal from "../../4_Shared/model/useErrorModal";
 
 const AdminPage = () => {
   const dateInputRef = useRef(null); // DateInput 요소에 접근할 ref 생성
+  const { errorMessage, isModalOpen, showErrorModal, errorModalBackPage } =
+    useErrorModal();
+  const { userInfo } = useGetUserMyInfo(showErrorModal);
 
   const { date, handleDateChange, handleDateClick } = useDate(dateInputRef);
-
   const { busDriverDateData } = useGetBusDriverDate(date);
   const { displayDriverDateData } = useManageDriverDate(
     busDriverDateData,
@@ -50,6 +55,13 @@ const AdminPage = () => {
             />
           ))}
         </STYLE.UserContainer>
+      )}
+      {isModalOpen && (
+        <ErrorModal
+          type="one"
+          onClose={errorModalBackPage}
+          message={errorMessage}
+        />
       )}
     </>
   );

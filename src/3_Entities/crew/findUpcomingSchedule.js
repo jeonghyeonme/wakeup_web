@@ -1,6 +1,11 @@
-import scheduleData from "../scheduleData";
+import scheduleData from "../0_exampleData/scheduleData";
 
-const getTestData = (date, userIdx, time) => {
+// 1.	특정 날짜(date)와 사용자 인덱스(userIdx)를 기준으로 일정을 검색.
+// 2.	특정 시간 이후의 가장 가까운 일정을 찾음.
+// 3.	해당 날짜에 일정이 없으면 다음 날짜의 데이터를 확인.
+
+// 후에 백엔드에서 작업 필요
+const findUpcomingSchedule = (date, userIdx, time) => {
   // 날짜와 userIdx로 데이터 검색
   const dateData = scheduleData[date];
   if (!dateData) {
@@ -53,4 +58,4 @@ const getTestData = (date, userIdx, time) => {
   return closest; // 가장 가까운 데이터 반환
 };
 
-export default getTestData;
+export default findUpcomingSchedule;
