@@ -1,18 +1,17 @@
-import adminTestData from "../0_exampleData/adminTestData";
+import scheduleData from "../0_exampleData/scheduleData";
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const getTestData = (date) => {
-  return adminTestData.filter((userData) => userData.date === date);
+  return scheduleData.filter((userData) => userData.date === date);
 };
-
-const getBusDriverDateData = async (date) => {
+const getBusScheduleData = async (date) => {
   if (isDevelopment) {
     // 개발 모드에서는 테스트 데이터를 반환
     console.log("개발 모드: 테스트 데이터를 반환합니다.");
     return getTestData(date);
   }
   try {
-    const response = await fetch("http://XXX", {});
+    const response = await fetch("http://XXX", { date });
     const status = response.status;
 
     // 상태 코드에 따른 처리
@@ -35,5 +34,4 @@ const getBusDriverDateData = async (date) => {
     console.log("네트워크 또는 서버 오류:", error);
   }
 };
-
-export default getBusDriverDateData;
+export default getBusScheduleData;

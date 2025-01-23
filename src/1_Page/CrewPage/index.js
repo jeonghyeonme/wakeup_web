@@ -10,17 +10,13 @@ import {
 } from "./style";
 import useDate from "../../model/useDate";
 import useTime from "../../model/useTime";
+
 import useBusScheduleData from "../../../../entities/crew/useBusScheduleData";
-import { getCookie } from "../../../../shared/cookie/cookie";
+
 import useClickAlert from "../../../../entities/crew/useClickAlert";
 
 const CrewPage = () => {
   const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const cookieData = getCookie("user_data");
-    setData(cookieData); // 상태로 설정
-  }, []);
 
   const [formattedDate, formattedDateShort, formattedTime] = useDate();
   const [busScheduleData, error, fetchData] = useBusScheduleData();

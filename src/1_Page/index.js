@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import Admin from "./AdminMain";
+import AdminPage from "./AdminPage";
 // import Footer from "./footer";
-// import Crew from "./crew_main";
+import CrewPage from "./CrewPage";
 // import Login from "./login";
 // import FindId from "./find_id";
 // import FindPw from "./find_pw";
@@ -20,8 +20,8 @@ const Page = () => {
         {/* <Route path="/" element={<Login />} /> */}
         {/* <Route path="/findId" element={<FindId />} /> */}
         {/* <Route path="/findPw" element={<FindPw />} /> */}
-        <Route path="/admin" element={<Admin />} />
-        {/* <Route path="/crew" element={<Crew />} /> */}
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/crew" element={<CrewPage />} />
         {/* <Route path="/profile" element={<Profile />} /> */}
         {/* <Route path="/trip" element={<Trip />} /> */}
       </Routes>
