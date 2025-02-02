@@ -1,21 +1,20 @@
 import STYLE from "./style";
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 
 import useGetBusDriverDate from "./model/useGetBusDriverDate";
 import useManageDriverDate from "./model/useManageDriverDate";
 import useDate from "./model/useDate";
+import useGetUserMyInfo from "./model/useGetUserMyInfo";
 
 import UserBox from "./ui/UserBox";
+import ModalCalander from "./ui/ModalCalander";
 import NonSchedule from "../../2_Widget/NonSchedule";
-import useGetUserMyInfo from "./model/useGetUserMyInfo";
-import ErrorModal from "../../2_Widget/ConfirmModal";
-import useErrorModal from "../../4_Shared/model/useErrorModal";
 
 const AdminPage = () => {
   const dateInputRef = useRef(null); // DateInput 요소에 접근할 ref 생성
-  const { errorMessage, isModalOpen, showErrorModal, errorModalBackPage } =
-    useErrorModal();
-  const { userInfo } = useGetUserMyInfo(showErrorModal);
+
+  const { userInfo } = useGetUserMyInfo();
+  const [isModalCalander, setIsModalCalander] = useState(false);
 
   const { date, handleDateChange, handleDateClick } = useDate(dateInputRef);
   const { busDriverDateData } = useGetBusDriverDate(date);
@@ -27,7 +26,10 @@ const AdminPage = () => {
   return (
     <>
       <STYLE.HeaderTag>
-        <STYLE.DateText onClick={handleDateClick}>
+        <STYLE.DateText
+          onClick={() => {
+            setIsModalCalander(true);
+          }}>
           {new Date(date).toLocaleDateString("ko-KR", {
             year: "numeric",
             month: "2-digit",
@@ -36,8 +38,7 @@ const AdminPage = () => {
           })}
         </STYLE.DateText>
         <STYLE.DateInput
-          ref={dateInputRef} // DateInput 요소에 ref 연결
-          type="date"
+          ref={dateInputRef}
           value={date}
           onChange={handleDateChange}
         />
@@ -58,13 +59,7 @@ const AdminPage = () => {
           ))}
         </STYLE.UserContainer>
       )}
-      {isModalOpen && (
-        <ErrorModal
-          type="one"
-          onClose={errorModalBackPage}
-          message={errorMessage}
-        />
-      )}
+      {isModalCalander && <ModalCalander />}
     </>
   );
 };

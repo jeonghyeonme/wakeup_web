@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const usePageChange = (initialTab = "crew") => {
-  const [activeTab, setActiveTab] = useState(initialTab);
+const usePageChange = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(location.pathname);
 
   useEffect(() => {
     navigate(activeTab);

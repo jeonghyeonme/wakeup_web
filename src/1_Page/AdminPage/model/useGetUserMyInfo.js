@@ -11,6 +11,7 @@ const useGetUserMyInfo = (showErrorModal) => {
       const userInfoData = await getMyInfo();
       if (userInfoData.type === "crew") {
         navigate("/crew");
+        return;
       }
       if (userInfoData.type !== "admin") {
         showErrorModal("잘못된 권한입니다");
