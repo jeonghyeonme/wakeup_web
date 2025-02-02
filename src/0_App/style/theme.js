@@ -11,6 +11,7 @@ const defaultTheme = {
   gray: "#999999",
   dark_gray: "#252547",
   red: "#FF0000",
+  green: "#7cba7d",
 
   // 추가적인 디자인 요소
   primary_gradient: "linear-gradient(90deg, #FFDD00, #FFD700)",
@@ -38,6 +39,7 @@ const darkTheme = {
   gray: "#666666",
   dark_gray: "#1A1A1A",
   red: "#FF4C4C",
+  green: "#7cba7d",
 
   primary_gradient: "linear-gradient(90deg, #1927BC, #252547)",
   glass_background: "rgba(0, 0, 0, 0.3)",
