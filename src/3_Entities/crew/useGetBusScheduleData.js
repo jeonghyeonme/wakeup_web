@@ -1,34 +1,30 @@
 import { useEffect } from "react";
 import { useFetch } from "../../4_Shared/util/apiUtil";
 import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
+import findUpcomingSchedule from "./findUpcomingSchedule";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const usePutScheduleAlert = () => {
+const useGetBusScheduleData = (date, userIdx, time) => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
 
-  const putScheduleAlert = async (id, password) => {
+  useEffect(() => {
     if (isDevelopment) {
-      console.log("개발 모드: 테스트 데이터를 반환합니다.");
-      return true;
+      return findUpcomingSchedule("2024-11-20", userIdx, "14:00");
     }
-
-    await request("PUT", "/account/login", { id, password });
-  };
+    const endpoint = `/bus/schedule?date=${date}&userIdx=${userIdx}&time=${time}`;
+    request("GET", endpoint);
+  }, [date, userIdx, time]);
 
   useEffect(() => {
     if (!serverState) return;
-
     switch (serverState.status) {
       case 400:
-        setAlert("입력 값 오류");
+        setAlert("입력 값 오류: 날짜, 사용자 정보 또는 시간을 확인하세요.");
         break;
       case 409:
-        setAlert("로그인 실패");
-        break;
-      case 200:
-        setAlert("스케줄 알림이 성공적으로 설정되었습니다.");
+        setAlert("중복된 일정이 존재합니다.");
         break;
       default:
         setAlert("서버 오류가 발생했습니다.");
@@ -36,7 +32,7 @@ const usePutScheduleAlert = () => {
     }
   }, [serverState]);
 
-  return [putScheduleAlert];
+  return [serverState];
 };
 
-export default usePutScheduleAlert;
+export default useGetBusScheduleData;

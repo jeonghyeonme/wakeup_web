@@ -10,7 +10,6 @@ import ProfilePage from "./ProfilePage";
 
 const Page = () => {
   const location = useLocation();
-
   // Footer를 제외할 경로 리스트
   const noFooterRoutes = ["/login", "/findid", "/findpw"];
 
