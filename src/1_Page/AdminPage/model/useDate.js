@@ -1,18 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const useDate = (dateInputRef) => {
-  const today = new Date().toISOString().split("T")[0]; // 현재 날짜 초기값 설정
+const useDate = () => {
+  const today = new Date()
+    .toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(/\. /g, "-")
+    .replace(".", "")
+    .replace(" ", "");
+
   const [date, setDate] = useState(today);
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
+
+  // 날짜 객체를 받아서 상태 업데이트
+  const handleDateChange = (newDate) => {
+    const formattedDate = newDate.toISOString().split("T")[0];
+    setDate(formattedDate);
   };
 
-  const handleDateClick = () => {
-    if (dateInputRef.current) {
-      dateInputRef.current.showPicker(); // date input의 showPicker 메소드 호출 (일부 브라우저 지원)
-    }
-  };
-  return { date, handleDateChange, handleDateClick };
+  return [date, handleDateChange];
 };
 
 export default useDate;

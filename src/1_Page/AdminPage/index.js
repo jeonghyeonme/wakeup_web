@@ -16,7 +16,7 @@ const AdminPage = () => {
   const { userInfo } = useGetUserMyInfo();
   const [isModalCalander, setIsModalCalander] = useState(false);
 
-  const { date, handleDateChange, handleDateClick } = useDate(dateInputRef);
+  const [date, handleDateChange] = useDate(dateInputRef);
   const { busDriverDateData } = useGetBusDriverDate(date);
   const { displayDriverDateData } = useManageDriverDate(
     busDriverDateData,
@@ -59,7 +59,14 @@ const AdminPage = () => {
           ))}
         </STYLE.UserContainer>
       )}
-      {isModalCalander && <ModalCalander />}
+      {isModalCalander && (
+        <ModalCalander
+          handleDateChange={handleDateChange}
+          onClose={() => {
+            setIsModalCalander(false);
+          }}
+        />
+      )}
     </>
   );
 };

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import STYLE from "./style";
 import MonthPicker from "./ui/MonthPicker";
 
-const CalendarModal = () => {
+const CalendarModal = (props) => {
+  const { handleDateChange, onClose } = props;
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(today);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -19,19 +20,12 @@ const CalendarModal = () => {
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
   const totalDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-  const handlePrevMonth = () => {
-    if (currentMonth === 0) {
-      setCurrentMonth(11);
-      setCurrentYear(currentYear - 1);
-    } else {
-      setCurrentMonth(currentMonth - 1);
-    }
-  };
-
   const handleDateClick = (day) => {
-    setSelectedDate(new Date(currentYear, currentMonth, day));
+    const utcDate = new Date(Date.UTC(currentYear, currentMonth, day));
+    // 한국 시간(KST)을 위해 9시간 더함
+    utcDate.setUTCHours(utcDate.getUTCHours() + 9);
+    setSelectedDate(utcDate);
   };
-
   const toggleModalPicker = () => {
     setIsModalPicker(!isModalPicker);
   };
@@ -48,9 +42,8 @@ const CalendarModal = () => {
         {/* 연도 및 월 선택 모달 토글 */}
         <STYLE.MonthSelector>
           <span onClick={toggleModalPicker} style={{ cursor: "pointer" }}>
-            {currentYear}년 {currentMonth + 1}월
+            {currentYear}년 {currentMonth + 1}월 ▼
           </span>
-          <STYLE.Arrow onClick={handlePrevMonth}>◀</STYLE.Arrow>
         </STYLE.MonthSelector>
 
         <STYLE.CalendarGrid>
@@ -87,8 +80,14 @@ const CalendarModal = () => {
         </STYLE.CalendarGrid>
 
         <STYLE.ButtonGroup>
-          <STYLE.CancelButton>취소</STYLE.CancelButton>
-          <STYLE.ConfirmButton>확인</STYLE.ConfirmButton>
+          <STYLE.CancelButton onClick={onClose}>취소</STYLE.CancelButton>
+          <STYLE.ConfirmButton
+            onClick={() => {
+              handleDateChange(selectedDate);
+              onClose();
+            }}>
+            확인
+          </STYLE.ConfirmButton>
         </STYLE.ButtonGroup>
       </STYLE.Wrapper>
 

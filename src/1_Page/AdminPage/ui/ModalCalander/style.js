@@ -28,18 +28,20 @@ const STYLE = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
   `,
   SelectedDate: styled.div`
     font-size: xx-large;
     color: #7cba7d;
     font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 5px;
   `,
   MonthSelector: styled.div`
     display: flex;
     align-items: center;
     font-size: 16px;
     color: #333;
+    margin-bottom: 5px;
   `,
   Arrow: styled.span`
     cursor: pointer;
