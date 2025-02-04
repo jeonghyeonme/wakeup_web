@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import STYLE from "./style";
 import useScroll from "./model/useScroll";
 
@@ -12,16 +12,7 @@ const MonthPicker = (props) => {
   } = props;
 
   const [yearListRef, monthListRef] = useScroll(currentYear, currentMonth);
-
-  const handleSelectMonth = (month) => {
-    setCurrentMonth(month);
-    toggleModalPicker(); // 모달 닫기
-  };
-
-  const handleSelectYear = (year) => {
-    setCurrentYear(year);
-    toggleModalPicker(); // 모달 닫기
-  };
+  const [selectYear, setSelecetYear] = useState(currentYear);
 
   return (
     <>
@@ -36,8 +27,8 @@ const MonthPicker = (props) => {
                 <STYLE.PickerItem
                   key={year}
                   data-year={year}
-                  onClick={() => handleSelectYear(year)}
-                  isSelected={year === currentYear}>
+                  onClick={() => setSelecetYear(year)}
+                  isSelected={year === selectYear}>
                   {year}년
                 </STYLE.PickerItem>
               );
@@ -52,7 +43,11 @@ const MonthPicker = (props) => {
               <STYLE.PickerItem
                 key={i}
                 data-month={i}
-                onClick={() => handleSelectMonth(i)}
+                onClick={() => {
+                  setCurrentMonth(i);
+                  setCurrentYear(selectYear);
+                  toggleModalPicker();
+                }}
                 isSelected={i === currentMonth}>
                 {i + 1}월
               </STYLE.PickerItem>

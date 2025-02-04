@@ -14,11 +14,11 @@ const STYLE = {
     padding: 12px;
     pointer-events: none;
     transition: all 0.3s ease-in-out;
-    font-size: ${(props) => (props.active ? "10px" : "16px")};
-    color: ${(props) => (props.active ? "#3498db" : "#aaa")};
+    font-size: ${({ $active }) => ($active ? "10px" : "16px")};
+    color: ${({ $active }) => ($active ? "#3498db" : "#aaa")};
     font-weight: 500;
     letter-spacing: 0.5px;
-    top: ${(props) => (props.active ? "5px" : "50%")};
+    top: ${({ $active }) => ($active ? "5px" : "50%")};
     transform: translateY(-50%);
   `,
 
@@ -28,18 +28,16 @@ const STYLE = {
     border: none;
     outline: none;
     border-radius: 12px;
-    padding: 15px;
-    font-size: ${(props) => (props.active ? "14px" : "17px")};
+    padding: 10px;
+    font-size: ${({ $active }) => ($active ? "14px" : "17px")};
     background: #f7f9fc;
     color: #333;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease-in-out;
-
     &:focus {
       background: #ffffff;
       box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
     }
-
     &::placeholder {
       color: transparent;
     }

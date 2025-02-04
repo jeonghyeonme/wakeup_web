@@ -8,6 +8,7 @@ const useManageDriverDate = (driverDateData = []) => {
 
   useEffect(() => {
     if (!driverDateData) return;
+    if (driverDateData.length === 0) return;
     const intervalId = setInterval(() => {
       updateDriverData();
     }, 60000); // 1분마다 호출
@@ -19,12 +20,13 @@ const useManageDriverDate = (driverDateData = []) => {
   const updateDriverData = () => {
     const now = new Date(); // 현재 시간
     const currentTime = now.getHours() * 60 + now.getMinutes(); // 현재 시간을 분 단위로 변환
-
     const enoughTimeData = [];
     const overTimeData = [];
 
     driverDateData.forEach((item) => {
-      const [hour, minute] = item.time.split(":").map(Number);
+      const date = new Date(item?.start_time);
+      const hour = date.getHours();
+      const minute = date.getMinutes();
       const itemTimeInMinutes = hour * 60 + minute;
 
       // 현재 시간보다 이전 데이터는 삭제 (필터링하지 않음)

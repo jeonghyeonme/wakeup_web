@@ -3,7 +3,6 @@ import { useFetch } from "../../4_Shared/util/apiUtil"; // useFetch 경로는 �
 import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 import findSchedulesByUserAndDate from "../1_backendLogic/findSchedulesByUserAndDate";
 
-const testUserIdx = process.env.REACT_APP_TEST_USERIDX;
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const useGetTodaySchedule = (dateTime) => {
@@ -13,8 +12,7 @@ const useGetTodaySchedule = (dateTime) => {
 
   useEffect(() => {
     if (isDevelopment) {
-      console.log("개발 모드: 테스트 데이터를 반환합니다.");
-      setBusDriverDatedata(findSchedulesByUserAndDate(testUserIdx, dateTime));
+      setBusDriverDatedata(findSchedulesByUserAndDate(dateTime));
       return;
     }
     const dateTimeISO = dateTime.toISOString();

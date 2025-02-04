@@ -50,16 +50,11 @@ const STYLE = {
   PickerItem: styled.div`
     padding: 10px 15px;
     border-bottom: 1px solid #e0e0e0;
-    cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
     font-size: 14px;
     color: #333;
     scroll-snap-align: start; /* 각 아이템을 스냅 포인트로 지정 */
-
-    &:hover {
-      background-color: #d4f4dd;
-    }
 
     ${({ isSelected, theme }) =>
       isSelected &&

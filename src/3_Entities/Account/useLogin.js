@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { setCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { useFetch } from "../../4_Shared/util/apiUtil";
 import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 
 const useLogin = () => {
   const [serverState, request] = useFetch();
+  const [, setCookies] = useCookies();
   const [setAlert] = useAlertModalAtom();
   const loginEvent = async (id, pw) => {
     await request("POST", "/account/login", {

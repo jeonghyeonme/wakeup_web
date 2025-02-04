@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 const useManageTime = (scheduleTime, currentDate, isWakeUp) => {
   const [remainingTime, setRemainingTime] = useState(0);
 
-  console.log(scheduleTime, currentDate);
-
   useEffect(() => {
     if (!scheduleTime || isWakeUp) {
       setRemainingTime(0);

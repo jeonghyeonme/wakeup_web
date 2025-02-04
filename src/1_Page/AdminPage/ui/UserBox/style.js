@@ -2,16 +2,34 @@ import styled from "styled-components";
 
 const STYLE = {
   Container: styled.div`
-    background-color: ${({ wakeup }) => (wakeup ? "#eff7eb" : "#FEC3C3")};
-    padding: 10px 15px;
-    width: 80%;
-    height: 80px;
+    background: ${({ wakeup }) =>
+      wakeup
+        ? "linear-gradient(135deg, #e8f8ec, #d3f1d4)"
+        : "linear-gradient(135deg, #ffc9c9, #fdb2b2)"};
+    padding: 15px 20px;
+    width: 90%;
+    max-width: 400px;
+    height: 90px;
 
-    border-radius: 8px;
-    display: inline-flex;
+    border-radius: 16px;
+    display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
   `,
   Text: styled.span`
     font-size: 16px;
@@ -26,7 +44,7 @@ const STYLE = {
 
   ModalContainer: styled.div`
     background: white;
-    width: 90%;
+    width: 100%;
     max-width: 400px;
     padding: 20px;
     border-radius: 15px 15px 0 0;

@@ -19,7 +19,7 @@ const AdminPage = () => {
   }, [myInfo]);
 
   const [isModalCalander, modalCalanderToggle] = useModalHandler();
-  const [dateInputRef, date, handleDateChange] = useDate();
+  const [dateInputRef, date, setDate] = useDate();
   const [busDriverDateData] = useGetTodaySchedule(date);
   const [displayTimeEnoughDriverDateData, displayTimeOverDriverDateData] =
     useManageDriverDate(busDriverDateData);
@@ -34,7 +34,7 @@ const AdminPage = () => {
           <STYLE.DateInput
             ref={dateInputRef}
             value={format(date, "yyyy-MM-dd")}
-            onChange={handleDateChange}
+            onChange={setDate}
           />
         </STYLE.HeaderTag>
         {displayTimeEnoughDriverDateData.length +
@@ -44,22 +44,19 @@ const AdminPage = () => {
             <NonSchedule />
           </STYLE.ScheduleContainer>
         ) : (
-          <STYLE.UserContainer>
+          <STYLE.ScheduleContainer>
             {displayTimeOverDriverDateData.map((schedule) => (
               <UserBox schedule={schedule} isEnoughTime={false} />
             ))}
             {displayTimeEnoughDriverDateData.map((schedule) => (
               <UserBox schedule={schedule} isEnoughTime={true} />
             ))}
-          </STYLE.UserContainer>
+          </STYLE.ScheduleContainer>
         )}
       </STYLE.Container>
 
       {isModalCalander && (
-        <ModalCalander
-          handleDateChange={handleDateChange}
-          onClose={modalCalanderToggle}
-        />
+        <ModalCalander setDate={setDate} onClose={modalCalanderToggle} />
       )}
     </>
   );

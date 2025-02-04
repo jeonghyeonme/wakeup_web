@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { format } from "date-fns";
 import STYLE from "./style";
 import MonthPicker from "./ui/MonthPicker";
 
 const CalendarModal = (props) => {
-  const { handleDateChange, onClose } = props;
+  const { setDate, onClose } = props;
+
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(today);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -11,6 +13,7 @@ const CalendarModal = (props) => {
   const [isModalPicker, setIsModalPicker] = useState(false);
 
   const daysInWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  console.log("리렌더캘린더");
 
   const lastDayOfPreviousMonth = new Date(
     currentYear,
@@ -35,7 +38,7 @@ const CalendarModal = (props) => {
       <STYLE.Wrapper>
         <STYLE.Text>날짜선택</STYLE.Text>
         <STYLE.SelectedDate>
-          {selectedDate.toISOString().split("T")[0].replace(/-/g, ".")}{" "}
+          {format(selectedDate, "yyyy.MM.dd")}
           {["일", "월", "화", "수", "목", "금", "토"][selectedDate.getDay()]}
         </STYLE.SelectedDate>
 
@@ -83,7 +86,7 @@ const CalendarModal = (props) => {
           <STYLE.CancelButton onClick={onClose}>취소</STYLE.CancelButton>
           <STYLE.ConfirmButton
             onClick={() => {
-              handleDateChange(selectedDate);
+              setDate(selectedDate);
               onClose();
             }}>
             확인

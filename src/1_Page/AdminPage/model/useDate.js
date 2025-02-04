@@ -7,16 +7,7 @@ const useDate = () => {
   const dateInputRef = useRef(null);
   const [date, setDate] = useState(today);
 
-  // 날짜 객체를 받아서 상태 업데이트
-  const handleDateChange = (newDate) => {
-    if (!(newDate instanceof Date) || isNaN(newDate.getTime())) {
-      console.error("유효하지 않은 날짜 객체입니다:", newDate);
-      return;
-    }
-    setDate(newDate); // Date 객체만 상태로 설정
-  };
-
-  return [dateInputRef, date, handleDateChange]; // formattedDate를 사용하여 날짜 표시
+  return [dateInputRef, date, setDate]; // formattedDate를 사용하여 날짜 표시
 };
 
 export default useDate;

@@ -28,7 +28,11 @@ const App = () => {
             <Page />
           </STYLE.Main>
           {modalMessage && (
-            <ConfirmModal message={modalMessage} onClose={closeModal} />
+            <ConfirmModal
+              type="one"
+              message={modalMessage}
+              onClose={closeModal}
+            />
           )}
         </Mobile>
       </ThemeProvider>

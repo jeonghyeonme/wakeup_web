@@ -26,19 +26,20 @@ const STYLE = {
     width: 1px;
     height: 1px;
     opacity: 0;
-    pointer-events: auto; /* 포커스를 받을 수 있도록 설정 */
+    pointer-events: auto;
   `,
   ScheduleContainer: styled.div`
     width: 100%;
     height: 80vh;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `,
   UserContainer: styled.div`
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    min-height: 90vh; /* 변경 */
-    margin-top: 10vh;
+    width: 100%;
     justify-content: start;
     align-items: center;
   `,

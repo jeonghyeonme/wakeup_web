@@ -162,4 +162,9 @@ export const STYLE = {
       box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     }
   `,
+  ErrorText: styled.p`
+    height: 8px;
+    font-size: 8px;
+    color: red;
+  `,
 };

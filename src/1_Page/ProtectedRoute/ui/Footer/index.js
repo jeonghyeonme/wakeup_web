@@ -6,19 +6,15 @@ import usePageChange from "./model/usePageChange";
 const Footer = () => {
   const [activeTab, setActiveTab] = usePageChange();
 
-  const isActive = (tab) => {
-    return (
-      (["/admin", "/crew"].includes(activeTab) && tab === "/") ||
-      tab === activeTab
-    );
-  };
-
   return (
     <STYLE.NavContainer>
       {pageConfig.map((tab) => (
         <STYLE.NavItem
           key={tab.key}
-          active={isActive(tab.key)}
+          active={
+            (["/admin", "/crew"].includes(activeTab) && tab.key === "/") ||
+            tab.key === activeTab
+          }
           onClick={() => setActiveTab(tab.key)}>
           {tab.icon}
           <span>{tab.label}</span>

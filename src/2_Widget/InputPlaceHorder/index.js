@@ -1,49 +1,31 @@
-import React, {
-  useState,
-  forwardRef,
-  useRef,
-  useImperativeHandle,
-} from "react";
+import React, { useState } from "react";
 import STYLE from "./style";
 
-const InputPlaceHorder = forwardRef((props, ref) => {
-  const inputRef = useRef();
-  const [isActive, setIsActive] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+const InputPlaceHorder = (props) => {
+  const { placeholder, type, register } = props;
+  const [active, setActive] = useState(false);
 
-  // 입력 값이 변경될 때 호출
+  // 입력 상태를 업데이트하는 함수
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-    setIsActive(e.target.value.trim() !== ""); // 값이 비어 있는지 확인
+    setActive(e.target.value.trim() !== ""); // 입력 값이 있으면 활성화
   };
-
-  // 부모가 사용할 수 있는 메서드 정의
-  useImperativeHandle(ref, () => ({
-    focus: () => {
-      inputRef.current.focus(); // 포커스 설정
-    },
-    clear: () => {
-      setInputValue(""); // 입력 필드 초기화
-      setIsActive(false); // Placeholder 상태 초기화
-    },
-    getValue: () => inputValue, // 현재 입력 값을 반환
-  }));
 
   return (
     <STYLE.PlaceholderContainer>
-      <STYLE.PlaceholderText active={isActive}>
-        {props.placeholder}
+      <STYLE.PlaceholderText $active={active}>
+        {placeholder}
       </STYLE.PlaceholderText>
       <STYLE.PlaceholderInput
-        ref={inputRef}
-        type={props.type}
+        $active={active}
+        type={type}
         autoComplete="off"
-        value={inputValue}
-        onChange={handleInputChange}
-        active={isActive}
+        {...register} // register 함수에서 반환된 속성 사용
+        onChange={(e) => {
+          handleInputChange(e); // 추가 입력 상태 관리
+        }}
       />
     </STYLE.PlaceholderContainer>
   );
-});
+};
 
 export default InputPlaceHorder;
