@@ -163,8 +163,8 @@ export const STYLE = {
     }
   `,
   ErrorText: styled.p`
-    height: 8px;
-    font-size: 8px;
+    height: 10px;
+    font-size: 10px;
     color: red;
   `,
 };

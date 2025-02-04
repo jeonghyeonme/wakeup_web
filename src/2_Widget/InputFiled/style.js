@@ -49,5 +49,16 @@ const STYLE = {
       background-color: #e0e0e0;
     }
   `,
+  ErrorMessageContainer: styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: end;
+  `,
+  ErrorMessage: styled.p`
+    height: 10px;
+    font-size: 10px;
+    color: red;
+    margin: 3px;
+  `,
 };
 export default STYLE;

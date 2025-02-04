@@ -7,7 +7,9 @@ const InputField = (props) => {
     <STYLE.InputWrapper>
       <STYLE.InputLabel>{label}</STYLE.InputLabel>
       <STYLE.InputField type={type} placeholder={placeholder} {...register} />
-      {error && <p style={{ color: "red" }}>{error.message}</p>}
+      <STYLE.ErrorMessageContainer>
+        <STYLE.ErrorMessage>{error && error.message}</STYLE.ErrorMessage>
+      </STYLE.ErrorMessageContainer>
     </STYLE.InputWrapper>
   );
 };
