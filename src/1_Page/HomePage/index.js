@@ -17,8 +17,6 @@ const HomePage = () => {
       window.location.href = "/crew"; // 페이지 리로드 및 리디렉션
     }
   }, [myInfo, navigate]);
-
-  return <div>홈페이지 콘텐츠</div>;
 };
 
 export default HomePage;
