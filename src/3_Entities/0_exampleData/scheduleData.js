@@ -1,8 +1,8 @@
 const scheduleData = [
   {
     idx: 1,
-    start_time: "2024-11-14T09:00:00Z",
-    end_time: "2024-11-14T10:00:00Z",
+    start_time: "2024-11-14T18:00:00+09:00",
+    end_time: "2024-11-14T19:00:00+09:00",
     title: "인천 TO 동탄",
     driver: {
       name: "김지우",
@@ -14,8 +14,8 @@ const scheduleData = [
   },
   {
     idx: 2,
-    start_time: "2024-11-14T11:00:00Z",
-    end_time: "2024-11-14T12:00:00Z",
+    start_time: "2024-11-14T20:00:00+09:00",
+    end_time: "2024-11-14T21:00:00+09:00",
     title: "서울 TO 광명",
     driver: {
       name: "이민호",
@@ -27,8 +27,8 @@ const scheduleData = [
   },
   {
     idx: 3,
-    start_time: "2024-11-14T13:00:00Z",
-    end_time: "2024-11-14T14:00:00Z",
+    start_time: "2024-11-14T22:00:00+09:00",
+    end_time: "2024-11-14T23:00:00+09:00",
     title: "부산 TO 대구",
     driver: {
       name: "박성훈",
@@ -36,12 +36,12 @@ const scheduleData = [
       company: "XYZ Inc",
       user_idx: 202,
     },
-    wakeup: true,
+    wakeup: false,
   },
   {
     idx: 4,
-    start_time: "2024-11-14T15:30:00Z",
-    end_time: "2024-11-14T16:30:00Z",
+    start_time: "2024-11-15T00:30:00+09:00",
+    end_time: "2024-11-15T01:30:00+09:00",
     title: "광주 TO 전주",
     driver: {
       name: "김태리",
@@ -53,8 +53,8 @@ const scheduleData = [
   },
   {
     idx: 5,
-    start_time: "2024-11-14T18:00:00Z",
-    end_time: "2024-11-14T19:00:00Z",
+    start_time: "2024-11-15T03:00:00+09:00",
+    end_time: "2024-11-15T04:00:00+09:00",
     title: "대전 TO 청주",
     driver: {
       name: "장예은",

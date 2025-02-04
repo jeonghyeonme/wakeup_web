@@ -1,27 +1,37 @@
 import STYLE from "./style";
 import useManageTime from "./model/useManageTime";
 import usePutAttendance from "../../../../3_Entities/Crew/usePutAttendance";
+import { useState } from "react";
 
 const CircularTimer = (props) => {
   const { busScheduleData, currentDate, toggleDateTrigger } = props;
+  const [isWakeUp, setIsWakeUp] = useState(false);
   const [putAttendance] = usePutAttendance(busScheduleData?.idx, {
     onSuccess: toggleDateTrigger,
   });
-  const [formattedTime] = useManageTime(
+
+  const [remainTime] = useManageTime(
     busScheduleData?.start_time,
-    currentDate
+    currentDate,
+    isWakeUp
   );
 
   return (
-    <STYLE.CircularWrapper onClick={busScheduleData && putAttendance}>
-      <STYLE.CircularBackground $wakeup={busScheduleData?.wakeup}>
+    <STYLE.CircularWrapper
+      onClick={() => {
+        if (busScheduleData) {
+          setIsWakeUp(true);
+          putAttendance();
+        }
+      }}>
+      <STYLE.CircularBackground $wakeup={busScheduleData?.wakeup || isWakeUp}>
         <STYLE.CircularText>
-          {busScheduleData?.wakeup ? (
+          {busScheduleData?.wakeup || isWakeUp ? (
             <p>출석 완료</p>
           ) : (
             <>
               <p>남은 시간</p>
-              <p>{formattedTime}</p>
+              <p>{remainTime}</p>
             </>
           )}
         </STYLE.CircularText>

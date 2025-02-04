@@ -10,8 +10,9 @@ const STYLE = {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 15px solid #81c784; /* 외부 원형 테두리 */
-    border-color: ${($wakeup) => ($wakeup ? "#81c784" : "#FEC3C3")};
+    border: 15px solid; /* 외부 원형 테두리 */
+    border-color: ${({ $wakeup }) => ($wakeup ? "#81c784" : "#FEC3C3")};
+
     background: transparent; /* 가운데 빈 부분 */
     display: flex;
     align-items: center;
