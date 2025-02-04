@@ -47,49 +47,62 @@
 
 ```
 📦 .
-├── README.md
-├── public
-│   └── index.html
-└── src
-    ├── app
-    │   ├── index.js
-    │   ├── model
-    │   └── style
-    │       └── GlobalStyle.js
-    ├── entities
-    │   ├── admin
-    │   ├── adminTestData.js
-    │   ├── crew
-    │   ├── find_id
-    │   ├── find_pw
-    │   ├── login
-    │   ├── memberData.js
-    │   ├── scheduleData.js
-    │   └── trip
-    ├── index.js
-    ├── page
-    │   ├── admin_main
-    │   ├── crew_main
-    │   ├── find_id
-    │   ├── find_pw
-    │   ├── footer
-    │   ├── index.js
-    │   ├── login
-    │   ├── profile
-    │   └── trip
-    ├── shared
-    │   ├── assets
-    │   │   └── logo.svg
-    │   ├── cookie
-    │   │   └── cookie.js
-    │   └── recoil
-    │       ├── useCheckAtom.js
-    │       ├── useDateAtom.js
-    │       └── useLoginAtom.js
-    └── widget
-        └── non_schedule
+├── 0_App
+│   ├── index.js
+│   ├── model
+│   └── style
+│    
+├── 1_Page
+│   ├── AdminPage
+│   ├── CrewPage
+│   ├── FindIdPage
+│   ├── FindPwPage
+│   ├── HomePage
+│   ├── LoginPage
+│   ├── LoginRoute
+│   ├── NotLoginRoute 
+│   ├── ProfilePage
+│   ├── TripPage
+│   └── index.js
+├── 2_Widget
+│   ├── ConfirmModal
+│   ├── InputFiled
+│   ├── InputPlaceHorder
+│   ├── ModalBase
+│   ├── ModalCalander
+│   └── NonSchedule
+├── 3_Entities
+│   ├── 0_exampleData
+│   │   ├── memberData.js
+│   │   └── scheduleData.js
+│   ├── 1_backendLogic
+│   │   ├── findSchedulesByDate.js
+│   │   ├── findSchedulesByUserAndDate.js
+│   │   └── findUpcomingSchedule.js
+│   ├── Account
+│   │   ├── useFindId.js
+│   │   ├── useFindPw.js
+│   │   ├── useGetMyInfo.js
+│   │   └── useLogin.js
+│   ├── Admin
+│   │   └── useGetTodaySchedule.js
+│   ├── Crew
+│   │   ├── useGetBusScheduleData.js
+│   │   └── usePutAttendance.js
+│   └── Trip
+│       └── useGetTripData.js
+├── 4_Shared
+│   ├── Recoil
+│   │   └── useAlertModalAtom.js
+│   ├── model
+│   └── util
+│       ├── apiUtil.js
+│       ├── formatPhoneNumber.js
+│       ├── regexPatterns.js
+│       └── useThrottle.js
+└── index.js
 
-57 directories, 88 files
+58 directories, 90 files
 
 ```
 
