@@ -6,7 +6,7 @@ const useFindId = () => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
 
-  const findId = async (name, phone, company) => {
+  const findId = async ({ name, phone, company }) => {
     await request("POST", "/account/find-id", {
       name,
       phone,

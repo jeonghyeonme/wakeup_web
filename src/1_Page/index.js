@@ -7,7 +7,7 @@ import HomePage from "./HomePage";
 import ProtectedRoute from "./ProtectedRoute";
 import LoginPage from "./LoginPage";
 import FindIdPage from "./FindIdPage";
-// import FindPwPage from "./FindPwPage";
+import FindPwPage from "./FindPwPage";
 // import ProfilePage from "./ProfilePage";
 // import Trip from "./trip";
 
@@ -26,7 +26,7 @@ const Page = () => {
         />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/findid" element={<FindIdPage />} />
-        {/* <Route path="/findpw" element={<FindPwPage />} /> */}
+        <Route path="/findpw" element={<FindPwPage />} />
         {/* <Route path="/profile" element={<ProfilePage />} /> */}
         {/* <Route path="/trip" element={<Trip />} /> */}
       </Routes>

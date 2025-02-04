@@ -7,6 +7,7 @@ import InputFieldComponent from "../../2_Widget/InputFiled";
 import useFindId from "../../3_Entities/Account/useFindId";
 import logo from "../../4_Shared/assets/logo.svg";
 import regexPatterns from "../../4_Shared/util/regexPatterns"; // 정규식 import
+import formatPhoneNumber from "../../4_Shared/util/formatPhoneNumber";
 
 const FindIdPage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const FindIdPage = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
   const [findId] = useFindId();
 
@@ -50,6 +52,9 @@ const FindIdPage = () => {
                 message: "유효한 전화번호 형식(010-XXXX-XXXX)을 입력하세요.",
               },
             })}
+            onInputChange={(e) => {
+              formatPhoneNumber(e, setValue);
+            }}
             error={errors.phone}
           />
 

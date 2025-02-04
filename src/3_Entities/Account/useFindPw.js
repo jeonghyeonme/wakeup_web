@@ -6,7 +6,8 @@ const useFindPw = () => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
 
-  const findPw = async (id, phone, company) => {
+  const findPw = async ({ id, phone, company }) => {
+    console.log(id, phone, company);
     await request("POST", "/account/find-password", {
       id,
       phone,
