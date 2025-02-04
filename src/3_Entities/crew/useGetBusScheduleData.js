@@ -13,9 +13,8 @@ const useGetBusScheduleData = (userIdx, dateTime) => {
   useEffect(() => {
     if (isDevelopment) {
       // 테스트 환경에서 dateTime, userIdx로 findUpcomingSchedule 호출
-      setBusScheduleData(
-        findUpcomingSchedule("2024-11-20T14:00:00Z", userIdx) || []
-      );
+      const date = new Date("2024-11-14T08:00:00Z");
+      setBusScheduleData(findUpcomingSchedule(date, userIdx) || []);
       return;
     }
     const formattedDateTime =

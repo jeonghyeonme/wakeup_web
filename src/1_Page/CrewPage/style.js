@@ -8,6 +8,14 @@ const STYLE = {
     align-items: center;
     height: 90vh;
   `,
+  RefreshBtn: styled.button`
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  `,
 
   TextContainer: styled.div`
     display: flex;

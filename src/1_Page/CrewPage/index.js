@@ -13,6 +13,7 @@ const CrewPage = () => {
 
   return (
     <STYLE.TimerContainer>
+      <STYLE.RefreshBtn onClick={toggleDateTrigger}>↻</STYLE.RefreshBtn>
       <STYLE.TextContainer>
         <STYLE.DateText>기사 : {myInfo?.name}</STYLE.DateText>
         <STYLE.DateText>{formattedDateKorea}</STYLE.DateText>

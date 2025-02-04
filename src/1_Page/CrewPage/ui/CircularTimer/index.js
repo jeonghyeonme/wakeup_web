@@ -13,7 +13,7 @@ const CircularTimer = (props) => {
   );
 
   return (
-    <STYLE.CircularWrapper onClick={putAttendance}>
+    <STYLE.CircularWrapper onClick={busScheduleData && putAttendance}>
       <STYLE.CircularBackground $wakeup={busScheduleData?.wakeup}>
         <STYLE.CircularText>
           {busScheduleData?.wakeup ? (
