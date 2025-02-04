@@ -19,7 +19,7 @@ const CircularTimer = (props) => {
   return (
     <STYLE.CircularWrapper
       onClick={() => {
-        if (busScheduleData) {
+        if (busScheduleData && !isWakeUp) {
           setIsWakeUp(true);
           putAttendance();
         }
