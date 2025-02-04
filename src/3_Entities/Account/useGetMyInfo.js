@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
-import { useFetch } from "../../4_Shared/util/apiUtil"; // 경로 수정 필요
+
 import memberData from "../0_exampleData/memberData";
+
+import { useFetch } from "../../4_Shared/util/apiUtil"; // 경로 수정 필요
 import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const useGetMyInfo = (userIdx, time) => {
+const useGetMyInfo = () => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
   const [myInfo, setMyInfo] = useState(null);
 
   useEffect(() => {
     if (isDevelopment) {
-      console.log("개발 모드: 랜덤 테스트 데이터를 반환합니다.");
-      setMyInfo(memberData[0]);
+      console.log("개발 모드: 랜덤 테스트 데이터를 반환합니다.", memberData[1]);
+      setMyInfo(memberData[1]);
       return;
     }
-    const queryParams = new URLSearchParams({ userIdx, time }).toString();
-    request("GET", `/account/myinfo?${queryParams}`);
-  }, [userIdx, time, request]);
+    request("GET", `/account/myinfo`);
+  }, []);
 
   useEffect(() => {
     if (!serverState) return;
@@ -42,7 +43,7 @@ const useGetMyInfo = (userIdx, time) => {
         break;
     }
     setMyInfo(serverState);
-  }, [serverState, setAlert]);
+  }, [serverState]);
 
   return [myInfo];
 };

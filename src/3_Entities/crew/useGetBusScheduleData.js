@@ -5,7 +5,7 @@ import findUpcomingSchedule from "../1_backendLogic/findUpcomingSchedule";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const useGetBusScheduleData = (dateTime, userIdx) => {
+const useGetBusScheduleData = (userIdx, dateTime) => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
   const [busScheduleData, setBusScheduleData] = useState([]);
@@ -13,7 +13,10 @@ const useGetBusScheduleData = (dateTime, userIdx) => {
   useEffect(() => {
     if (isDevelopment) {
       // 테스트 환경에서 dateTime, userIdx로 findUpcomingSchedule 호출
-      return findUpcomingSchedule("2024-11-20T14:00:00Z", userIdx);
+      setBusScheduleData(
+        findUpcomingSchedule("2024-11-20T14:00:00Z", userIdx) || []
+      );
+      return;
     }
     const formattedDateTime =
       dateTime instanceof Date ? dateTime.toISOString() : dateTime;

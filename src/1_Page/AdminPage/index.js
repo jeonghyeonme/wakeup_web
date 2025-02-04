@@ -19,14 +19,7 @@ const AdminPage = () => {
   return (
     <>
       <STYLE.HeaderTag>
-        <STYLE.DateText onClick={modalCalanderToggle}>
-          {new Date(date).toLocaleDateString("ko-KR", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            weekday: "short",
-          })}
-        </STYLE.DateText>
+        <STYLE.DateText onClick={modalCalanderToggle}>{date}</STYLE.DateText>
         <STYLE.DateInput
           ref={dateInputRef}
           value={date}

@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 const useDate = () => {
   const dateInputRef = useRef(null); // DateInput 요소에 접근할 ref 생성
 
+  // YYYY-MM-DD
   const today = new Date()
     .toLocaleDateString("ko-KR", {
       year: "numeric",

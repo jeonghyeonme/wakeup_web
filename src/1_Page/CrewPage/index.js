@@ -1,15 +1,15 @@
 import React from "react";
 import STYLE from "./style";
 import useManageDate from "./model/useManageDate";
+import CircularTimer from "./ui/CircularTimer";
 import useGetBusScheduleData from "../../3_Entities/Crew/useGetBusScheduleData";
 import useGetMyInfo from "../../3_Entities/Account/useGetMyInfo";
-import CircularTimer from "./ui/CircularTimer";
 
 const CrewPage = () => {
-  const [currentDate, formattedDateKorea, presentFormattedTime] =
-    useManageDate();
   const [myInfo] = useGetMyInfo();
-  const [busScheduleData] = useGetBusScheduleData(currentDate, myInfo?.idx);
+
+  const [currentDate, formattedDateKorea, toggleDateTrigger] = useManageDate();
+  const [busScheduleData] = useGetBusScheduleData(myInfo?.idx, currentDate);
 
   return (
     <STYLE.TimerContainer>
@@ -23,8 +23,9 @@ const CrewPage = () => {
         <STYLE.TimeText>{busScheduleData?.title}</STYLE.TimeText>
       </STYLE.TextContainer>
       <CircularTimer
-        presentFormattedTime={presentFormattedTime}
+        currentDate={currentDate}
         busScheduleData={busScheduleData}
+        toggleDateTrigger={toggleDateTrigger}
       />
     </STYLE.TimerContainer>
   );

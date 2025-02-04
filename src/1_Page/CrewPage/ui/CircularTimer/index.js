@@ -3,19 +3,20 @@ import useManageTime from "./model/useManageTime";
 import usePutAttendance from "../../../../3_Entities/Crew/usePutAttendance";
 
 const CircularTimer = (props) => {
-  const { busScheduleData, presentFormattedTime } = props;
-
+  const { busScheduleData, currentDate, toggleDateTrigger } = props;
+  const [putAttendance] = usePutAttendance(busScheduleData?.idx, {
+    onSuccess: toggleDateTrigger,
+  });
   const [formattedTime] = useManageTime(
     busScheduleData?.start_time,
-    presentFormattedTime
+    currentDate
   );
-  const [putAttendance] = usePutAttendance();
 
   return (
     <STYLE.CircularWrapper onClick={putAttendance}>
-      <STYLE.CircularBackground attendanc={busScheduleData?.attendanc}>
+      <STYLE.CircularBackground $wakeup={busScheduleData?.wakeup}>
         <STYLE.CircularText>
-          {busScheduleData?.attendanc ? (
+          {busScheduleData?.wakeup ? (
             <p>출석 완료</p>
           ) : (
             <>

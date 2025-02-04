@@ -4,13 +4,13 @@ import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const usePutAttendance = () => {
+const usePutAttendance = (idx, { onSuccess }) => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
 
-  const putAttendance = async (idx) => {
+  const putAttendance = async () => {
     if (isDevelopment) {
-      console.log("개발 모드: 테스트 데이터를 반환합니다.");
+      onSuccess?.();
       return true;
     }
 
@@ -30,7 +30,9 @@ const usePutAttendance = () => {
       default:
         break;
     }
-    setAlert("출석 체크 되었습니다.");
+    setAlert("출석 체크 되었습니다.", () => {
+      onSuccess?.();
+    });
   }, [serverState]);
 
   return [putAttendance];

@@ -1,9 +1,10 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const useManageDate = () => {
-  const currentDate = new Date();
+  const [dateTrigger, setDateTrigger] = useState(false);
 
-  // 한국어 포맷의 현재 날짜 (YYYY-MM-DD 형식, 요일 포함)
+  const currentDate = useMemo(() => new Date(), [dateTrigger]);
+
   const koreanFormattedDate = useMemo(() => {
     return currentDate.toLocaleDateString("ko-KR", {
       year: "numeric",
@@ -11,14 +12,12 @@ const useManageDate = () => {
       day: "2-digit",
       weekday: "short",
     });
-  }, []);
+  }, [currentDate]);
 
-  // 현재 시간 (HH:mm:ss)
-  const currentFormattedTime = useMemo(() => {
-    return currentDate.toTimeString().split(" ")[0]; // '14:30:45'
-  }, []);
+  // 토글 방식의 트리거 업데이트 함수
+  const toggleDateTrigger = () => setDateTrigger((prev) => !prev);
 
-  return [currentDate, koreanFormattedDate, currentFormattedTime];
+  return [currentDate, koreanFormattedDate, toggleDateTrigger];
 };
 
 export default useManageDate;
