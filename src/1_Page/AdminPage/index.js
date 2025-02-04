@@ -1,19 +1,17 @@
 import STYLE from "./style";
-import { useRef, useState } from "react";
+
 import useManageDriverDate from "./model/useManageDriverDate";
 import useDate from "./model/useDate";
-
 import UserBox from "./ui/UserBox";
-import ModalCalander from "../../2_Widget/ModalCalander";
 import NonSchedule from "./ui/NonSchedule";
-import useGetBusDriverDateData from "../../3_Entities/Admin/useGetBusDriverDateData";
+
+import ModalCalander from "../../2_Widget/ModalCalander";
+import useGetBusDriverDateData from "../../3_Entities/Admin/useGetMyTodaySchedule";
+import useModalHandler from "../../4_Shared/model/useModalHandler";
 
 const AdminPage = () => {
-  const dateInputRef = useRef(null); // DateInput 요소에 접근할 ref 생성
-
-  const [isModalCalander, setIsModalCalander] = useState(false);
-
-  const [date, handleDateChange] = useDate(dateInputRef);
+  const [isModalCalander, modalCalanderToggle] = useModalHandler();
+  const [dateInputRef, date, handleDateChange] = useDate();
   const [busDriverDateData] = useGetBusDriverDateData(date);
   const [displayTimeEnoughDriverDateData, displayTimeOverDriverDateData] =
     useManageDriverDate(busDriverDateData);
@@ -21,10 +19,7 @@ const AdminPage = () => {
   return (
     <>
       <STYLE.HeaderTag>
-        <STYLE.DateText
-          onClick={() => {
-            setIsModalCalander(true);
-          }}>
+        <STYLE.DateText onClick={modalCalanderToggle}>
           {new Date(date).toLocaleDateString("ko-KR", {
             year: "numeric",
             month: "2-digit",
@@ -57,9 +52,7 @@ const AdminPage = () => {
       {isModalCalander && (
         <ModalCalander
           handleDateChange={handleDateChange}
-          onClose={() => {
-            setIsModalCalander(false);
-          }}
+          onClose={modalCalanderToggle}
         />
       )}
     </>

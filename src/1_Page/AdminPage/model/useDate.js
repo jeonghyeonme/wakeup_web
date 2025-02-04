@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const useDate = () => {
+  const dateInputRef = useRef(null); // DateInput 요소에 접근할 ref 생성
+
   const today = new Date()
     .toLocaleDateString("ko-KR", {
       year: "numeric",
@@ -19,7 +21,7 @@ const useDate = () => {
     setDate(formattedDate);
   };
 
-  return [date, handleDateChange];
+  return [dateInputRef, date, handleDateChange];
 };
 
 export default useDate;
