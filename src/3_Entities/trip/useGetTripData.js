@@ -5,18 +5,18 @@ import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const useGetTripData = (date, userIdx) => {
+const useGetTripData = (date) => {
   const [tripData, setTripData] = useState(null);
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
 
   useEffect(() => {
     if (isDevelopment) {
-      setTripData(findSchedulesByUserAndDate(date, userIdx));
+      setTripData(findSchedulesByUserAndDate(date, 202));
       return;
     }
-    request("GET", `/trip/data?date=${date}&userIdx=${userIdx}`);
-  }, [date, userIdx]);
+    request("GET", `/trip/data?date=${date}`);
+  }, [date]);
 
   useEffect(() => {
     if (!serverState) return;
@@ -24,9 +24,7 @@ const useGetTripData = (date, userIdx) => {
       case 400:
         setAlert("입력 값 오류");
         return;
-      case 409:
-        setAlert("중복된 데이터가 있습니다.");
-        return;
+
       default:
         break;
     }

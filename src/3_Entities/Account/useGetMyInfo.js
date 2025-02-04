@@ -14,7 +14,6 @@ const useGetMyInfo = () => {
 
   useEffect(() => {
     if (isDevelopment) {
-      // console.log("개발 모드: 랜덤 테스트 데이터를 반환합니다.", memberData[1]);
       setMyInfo(memberData[0]);
       return;
     }

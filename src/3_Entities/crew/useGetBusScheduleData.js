@@ -5,26 +5,24 @@ import findUpcomingSchedule from "../1_backendLogic/findUpcomingSchedule";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const useGetBusScheduleData = (userIdx, dateTime) => {
+const useGetBusScheduleData = (dateTime) => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
   const [busScheduleData, setBusScheduleData] = useState([]);
 
   useEffect(() => {
     if (isDevelopment) {
-      // 테스트 환경에서 dateTime, userIdx로 findUpcomingSchedule 호출
+      // 테스트 환경에서 dateTime, findUpcomingSchedule 호출
       const date = new Date("2024-11-14T08:00:00");
-      setBusScheduleData(findUpcomingSchedule(date, userIdx) || []);
+      setBusScheduleData(findUpcomingSchedule(date) || []);
       return;
     }
     const formattedDateTime =
       dateTime instanceof Date ? dateTime.toISOString() : dateTime;
-    const endpoint = `/crew/schedule?dateTime=${encodeURIComponent(
-      formattedDateTime
-    )}&userIdx=${userIdx}`;
+    const endpoint = `/crew/dateTime/${encodeURIComponent(formattedDateTime)}`;
 
     request("GET", endpoint);
-  }, [dateTime, userIdx]);
+  }, [dateTime]);
 
   useEffect(() => {
     if (!serverState) return;
@@ -39,7 +37,7 @@ const useGetBusScheduleData = (userIdx, dateTime) => {
       default:
         break;
     }
-    setBusScheduleData(serverState?.data?.rows || []);
+    setBusScheduleData(serverState || []);
   }, [serverState]);
 
   return [busScheduleData];

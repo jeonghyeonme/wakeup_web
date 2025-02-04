@@ -1,17 +1,12 @@
 import scheduleData from "../0_exampleData/scheduleData";
 
 // 특정 날짜와 사용자 인덱스(userIdx)를 기준으로 가장 가까운 일정을 찾는 함수
-const findUpcomingSchedule = (dateTime, userIdx) => {
+const findUpcomingSchedule = (dateTime) => {
   const currentTime = new Date(dateTime).getTime();
-  console.log(dateTime, userIdx);
 
   // 현재 시간 이후의 모든 일정 필터링
   const upcomingSchedules = scheduleData
-    .filter(
-      (item) =>
-        item.driver.user_idx === userIdx &&
-        new Date(item.start_time).getTime() > currentTime
-    )
+    .filter((item) => new Date(item.start_time).getTime() > currentTime)
     .sort(
       (a, b) =>
         new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
