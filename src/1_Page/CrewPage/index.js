@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import STYLE from "./style";
 import useManageDate from "./model/useManageDate";
 import CircularTimer from "./ui/CircularTimer";
@@ -8,6 +8,9 @@ import { formatDateTime } from "./lib/formatedUtil";
 
 const CrewPage = () => {
   const [myInfo] = useGetMyInfo();
+  useEffect(() => {
+    if (myInfo) if (myInfo?.type !== "crew") window.location.href = "/admin";
+  }, [myInfo]);
 
   const [currentDate, formattedDateKorea, toggleDateTrigger] = useManageDate();
   const [busScheduleData] = useGetBusScheduleData(myInfo?.idx, currentDate);

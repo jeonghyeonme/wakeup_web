@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-const useManageDriverDate = (driverDateData) => {
+const useManageDriverDate = (driverDateData = []) => {
   const [displayTimeEnoughDriverDateData, setDisplayTimeEnoughDriverDateData] =
     useState([]);
   const [displayTimeOverDriverDateData, setDisplayTimeOverDriverDateData] =
     useState([]);
 
   useEffect(() => {
+    if (!driverDateData) return;
     const intervalId = setInterval(() => {
       updateDriverData();
     }, 60000); // 1분마다 호출

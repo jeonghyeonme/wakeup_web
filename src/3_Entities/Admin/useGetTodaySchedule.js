@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useFetch } from "../../4_Shared/util/apiUtil"; // useFetch 경로는 실제 경로에 맞게 수정
-import useAlertModalAtom from "./Recoil/useAlertModalAtom";
+import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 import findSchedulesByUserAndDate from "../1_backendLogic/findSchedulesByUserAndDate";
 
 const testUserIdx = process.env.REACT_APP_TEST_USERIDX;
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const useGetMyTodaySchedule = (dateTime) => {
+const useGetTodaySchedule = (dateTime) => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
   const [busDriverDatedata, setBusDriverDatedata] = useState(null);
@@ -19,7 +19,7 @@ const useGetMyTodaySchedule = (dateTime) => {
     }
     const dateTimeISO = dateTime.toISOString();
     request("GET", `/admin/dateTime/${encodeURIComponent(dateTimeISO)}`);
-  }, [dateTime, request]);
+  }, [dateTime]);
 
   useEffect(() => {
     if (!serverState) return;
@@ -39,4 +39,4 @@ const useGetMyTodaySchedule = (dateTime) => {
   return [busDriverDatedata];
 };
 
-export default useGetMyTodaySchedule;
+export default useGetTodaySchedule;

@@ -1,28 +1,22 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 const useDate = () => {
-  const dateInputRef = useRef(null); // DateInput 요소에 접근할 ref 생성
+  // 한국 시간 기준으로 오늘 날짜 설정
+  const today = useMemo(() => new Date(), []); // Date 객체를 그대로 저장
 
-  // YYYY-MM-DD
-  const today = new Date()
-    .toLocaleDateString("ko-KR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-    .replace(/\. /g, "-")
-    .replace(".", "")
-    .replace(" ", "");
-
+  const dateInputRef = useRef(null);
   const [date, setDate] = useState(today);
 
   // 날짜 객체를 받아서 상태 업데이트
   const handleDateChange = (newDate) => {
-    const formattedDate = newDate.toISOString().split("T")[0];
-    setDate(formattedDate);
+    if (!(newDate instanceof Date) || isNaN(newDate.getTime())) {
+      console.error("유효하지 않은 날짜 객체입니다:", newDate);
+      return;
+    }
+    setDate(newDate); // Date 객체만 상태로 설정
   };
 
-  return [dateInputRef, date, handleDateChange];
+  return [dateInputRef, date, handleDateChange]; // formattedDate를 사용하여 날짜 표시
 };
 
 export default useDate;
