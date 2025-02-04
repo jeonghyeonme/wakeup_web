@@ -1,35 +1,21 @@
 import STYLE from "./style";
 import useManageTime from "./model/useManageTime";
-import putScheduleAlert from "../../../../3_Entities/Crew/putScheduleAlert";
-
-import { useEffect, useState } from "react";
+import usePutAttendance from "../../../../3_Entities/Crew/usePutAttendance";
 
 const CircularTimer = (props) => {
   const { busScheduleData, presentFormattedTime } = props;
 
-  const { formattedTime } = useManageTime(
+  const [formattedTime] = useManageTime(
     busScheduleData?.start_time,
     presentFormattedTime
   );
-  useEffect(() => {
-    console.log(formattedTime);
-  }, [formattedTime]);
-
-  const [check, setCheck] = useState(false);
-
-  const handleClickAttendace = async () => {
-    if (!busScheduleData) return;
-    const result = await putScheduleAlert();
-    if (result) {
-      setCheck(true);
-    }
-  };
+  const [putAttendance] = usePutAttendance();
 
   return (
-    <STYLE.CircularWrapper onClick={handleClickAttendace}>
-      <STYLE.CircularBackground attendanc={busScheduleData?.attendanc || check}>
+    <STYLE.CircularWrapper onClick={putAttendance}>
+      <STYLE.CircularBackground attendanc={busScheduleData?.attendanc}>
         <STYLE.CircularText>
-          {busScheduleData?.attendanc || check ? (
+          {busScheduleData?.attendanc ? (
             <p>출석 완료</p>
           ) : (
             <>

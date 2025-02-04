@@ -1,46 +1,39 @@
-import { useState, useEffect } from "react";
-import getTestData from "./getTestData";
+import { useEffect, useState } from "react";
+import { useFetch } from "../hooks/useFetch"; // 경로는 실제 프로젝트에 맞게 수정
+import findSchedulesByUserAndDate from "../1_backendLogic/findSchedulesByUserAndDate";
+import useAlertModalAtom from "../Recoil/useAlertModalAtom";
 
-const getGetTripData = async () => {
-  try {
-    const response = await fetch("http://XXX", {});
-    const status = response.status;
+const isDevelopment = process.env.NODE_ENV === "development";
 
-    // 상태 코드에 따른 처리
-    if (!response.ok) {
-      switch (status) {
-        case 400:
-          console.log("입력 값 오류");
-          break;
-        case 409:
-          console.log("중복임");
-          break;
-        default:
-          console.log("서버 오류 발생");
-      }
-      return; // 에러 발생 시 이후 처리 중단
+const useGetTripData = (date, userIdx) => {
+  const [tripData, setTripData] = useState(null);
+  const [serverState, request] = useFetch();
+  const [setAlert] = useAlertModalAtom();
+
+  useEffect(() => {
+    if (isDevelopment) {
+      setTripData(findSchedulesByUserAndDate(date, userIdx));
+      return;
     }
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log("네트워크 또는 서버 오류:", error);
-  }
-};
+    request("GET", `/trip/data?date=${date}&userIdx=${userIdx}`);
+  }, [date, userIdx]);
 
-const useGetTripData = () => {
-  const [tripData, setGetTripData] = useState(null);
-
-  const fetchData = async (date, user_idx) => {
-    try {
-      //   const data = await getGetTripData(date, user_idx)); 후에 데이터를 실제로 넣을 경우를 위해
-      const data = getTestData(date, user_idx);
-      setGetTripData(data);
-    } catch (error) {
-      setGetTripData([]);
+  useEffect(() => {
+    if (!serverState) return;
+    switch (serverState.status) {
+      case 400:
+        setAlert("입력 값 오류");
+        return;
+      case 409:
+        setAlert("중복된 데이터가 있습니다.");
+        return;
+      default:
+        break;
     }
-  };
+    setTripData(serverState?.rows);
+  }, [serverState, setAlert]);
 
-  return [tripData, fetchData];
+  return tripData;
 };
 
 export default useGetTripData;

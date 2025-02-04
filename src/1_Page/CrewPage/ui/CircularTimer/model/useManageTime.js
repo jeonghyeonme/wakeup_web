@@ -49,7 +49,7 @@ const useManageTime = (scheduleTime, presentFormattedTime) => {
           .padStart(2, "0")}`
       : "00:00:00";
 
-  return { formattedTime };
+  return [formattedTime];
 };
 
 export default useManageTime;

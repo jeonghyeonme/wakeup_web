@@ -1,30 +1,32 @@
 import styled from "styled-components";
 
-export const TimerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 90vh;
-  font-family: Arial, sans-serif;
-`;
+const STYLE = {
+  TimerContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  `,
 
-export const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 30vh;
-`;
+  TextContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+  `,
 
-export const DateText = styled.p`
-  font-size: 30px;
-  font-weight: bold;
-  margin: 5px 0;
-  margin-bottom: 20px;
-`;
+  DateText: styled.p`
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 0 20px;
+  `,
 
-export const TimeText = styled.p`
-  font-size: 22px;
-  margin-bottom: 20px;
-`;
+  TimeText: styled.p`
+    font-size: 22px;
+    margin-bottom: 20px;
+  `,
+};
+
+export default STYLE;

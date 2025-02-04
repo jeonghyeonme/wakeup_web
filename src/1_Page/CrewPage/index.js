@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import { TimerContainer, DateText, TimeText, TextContainer } from "./style";
+import React from "react";
+import STYLE from "./style";
 import useManageDate from "./model/useManageDate";
-import useGetBusScheduleData from "./model/useGetBusScheduleData";
-import useGetUserMyInfo from "./model/useGetUserMyInfo";
-
+import useGetBusScheduleData from "../../3_Entities/Crew/useGetBusScheduleData";
+import useGetMyInfo from "../../3_Entities/Account/useGetMyInfo";
 import CircularTimer from "./ui/CircularTimer";
-
-import ErrorModal from "../../2_Widget/ConfirmModal";
-
-import useErrorModal from "../../4_Shared/model/useErrorModal";
 
 const CrewPage = () => {
   const {
@@ -18,41 +13,31 @@ const CrewPage = () => {
     presentFormattedTimeShort,
   } = useManageDate();
 
-  const { errorMessage, isModalOpen, showErrorModal, errorModalBackPage } =
-    useErrorModal();
+  const [myInfo] = useGetMyInfo();
 
-  const { userInfo } = useGetUserMyInfo(showErrorModal);
-
-  const { busScheduleData } = useGetBusScheduleData(
+  const [busScheduleData] = useGetBusScheduleData(
     formattedDateShort,
-    userInfo?.idx,
+    myInfo?.idx,
     presentFormattedTimeShort
   );
 
   return (
     <>
-      <TimerContainer>
-        <TextContainer>
-          <DateText>기사 : {userInfo?.name}</DateText>
-          <DateText>{formattedDateKorea}</DateText>
-          <TimeText>
+      <STYLE.TimerContainer>
+        <STYLE.TextContainer>
+          <STYLE.DateText>기사 : {myInfo?.name}</STYLE.DateText>
+          <STYLE.DateText>{formattedDateKorea}</STYLE.DateText>
+          <STYLE.TimeText>
             배차 시간 :
             {busScheduleData ? busScheduleData.start_time : "배차가 없습니다"}
-          </TimeText>
-          <TimeText>{busScheduleData?.title}</TimeText>
-        </TextContainer>
+          </STYLE.TimeText>
+          <STYLE.TimeText>{busScheduleData?.title}</STYLE.TimeText>
+        </STYLE.TextContainer>
         <CircularTimer
           presentFormattedTime={presentFormattedTime}
           busScheduleData={busScheduleData}
         />
-      </TimerContainer>
-      {isModalOpen && (
-        <ErrorModal
-          onClose={errorModalBackPage}
-          message={errorMessage}
-          type="one"
-        />
-      )}
+      </STYLE.TimerContainer>
     </>
   );
 };

@@ -14,11 +14,10 @@ const useLogin = () => {
   };
   useEffect(() => {
     if (!serverState) return;
-
     switch (serverState.status) {
       case 409:
         setAlert("아이디 또는 비밀번호가 일치하지 않습니다");
-        break;
+        return;
       default:
         break;
     }

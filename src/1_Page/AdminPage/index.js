@@ -1,27 +1,22 @@
 import STYLE from "./style";
 import { useRef, useState } from "react";
-
-import useGetBusDriverDate from "./model/useGetBusDriverDate";
 import useManageDriverDate from "./model/useManageDriverDate";
 import useDate from "./model/useDate";
-import useGetUserMyInfo from "./model/useGetUserMyInfo";
 
 import UserBox from "./ui/UserBox";
-import ModalCalander from "./ui/ModalCalander";
-import NonSchedule from "../../2_Widget/NonSchedule";
+import ModalCalander from "../../2_Widget/ModalCalander";
+import NonSchedule from "./ui/NonSchedule";
+import useGetBusDriverDateData from "../../3_Entities/Admin/useGetBusDriverDateData";
 
 const AdminPage = () => {
   const dateInputRef = useRef(null); // DateInput 요소에 접근할 ref 생성
 
-  const { userInfo } = useGetUserMyInfo();
   const [isModalCalander, setIsModalCalander] = useState(false);
 
   const [date, handleDateChange] = useDate(dateInputRef);
-  const { busDriverDateData } = useGetBusDriverDate(date);
-  const { displayDriverDateData } = useManageDriverDate(
-    busDriverDateData,
-    date
-  );
+  const [busDriverDateData] = useGetBusDriverDateData(date);
+  const [displayTimeEnoughDriverDateData, displayTimeOverDriverDateData] =
+    useManageDriverDate(busDriverDateData);
 
   return (
     <>
@@ -43,19 +38,19 @@ const AdminPage = () => {
           onChange={handleDateChange}
         />
       </STYLE.HeaderTag>
-      {displayDriverDateData.length === 0 ? (
+      {displayTimeEnoughDriverDateData.length +
+        displayTimeOverDriverDateData.length ===
+      0 ? (
         <STYLE.ScheduleContainer>
           <NonSchedule />
         </STYLE.ScheduleContainer>
       ) : (
         <STYLE.UserContainer>
-          {displayDriverDateData.map((busUser) => (
-            <UserBox
-              driver={busUser.driver}
-              wakeup={busUser.wakeup}
-              time={busUser.time}
-              date={busUser.date}
-            />
+          {displayTimeOverDriverDateData.map((schedule) => (
+            <UserBox schedule={schedule} isEnoughTime={false} />
+          ))}
+          {displayTimeEnoughDriverDateData.map((schedule) => (
+            <UserBox schedule={schedule} isEnoughTime={true} />
           ))}
         </STYLE.UserContainer>
       )}

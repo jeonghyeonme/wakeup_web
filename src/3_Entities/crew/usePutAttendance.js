@@ -4,17 +4,17 @@ import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const usePutScheduleAlert = () => {
+const usePutAttendance = () => {
   const [serverState, request] = useFetch();
   const [setAlert] = useAlertModalAtom();
 
-  const putScheduleAlert = async (id, password) => {
+  const putAttendance = async (idx) => {
     if (isDevelopment) {
       console.log("개발 모드: 테스트 데이터를 반환합니다.");
       return true;
     }
 
-    await request("PUT", "/account/login", { id, password });
+    await request("PUT", `/crew/attendace/schedule/${idx}`);
   };
 
   useEffect(() => {
@@ -27,16 +27,13 @@ const usePutScheduleAlert = () => {
       case 409:
         setAlert("로그인 실패");
         break;
-      case 200:
-        setAlert("스케줄 알림이 성공적으로 설정되었습니다.");
-        break;
       default:
-        setAlert("서버 오류가 발생했습니다.");
         break;
     }
+    setAlert("출석 체크 되었습니다.");
   }, [serverState]);
 
-  return [putScheduleAlert];
+  return [putAttendance];
 };
 
-export default usePutScheduleAlert;
+export default usePutAttendance;
