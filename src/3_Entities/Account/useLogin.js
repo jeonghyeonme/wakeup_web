@@ -22,11 +22,12 @@ const useLogin = () => {
       default:
         break;
     }
-    const { accessToken, refreshToken, type } = serverState;
+    const { accessToken, refreshToken, type, userIdx } = serverState;
     // 쿠키 설정
     setCookies("accessToken", accessToken, { path: "/" });
     setCookies("refreshToken", refreshToken, { path: "/" });
     setCookies("type", type, { path: "/" });
+    setCookies("userIdx", userIdx, { path: "/" });
   }, [serverState]);
 
   return [loginEvent];

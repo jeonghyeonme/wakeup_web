@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useFetch } from "../hooks/useFetch"; // 경로는 실제 프로젝트에 맞게 수정
+import { useFetch } from "../../4_Shared/util/apiUtil"; // 경로는 실제 프로젝트에 맞게 수정
 import findSchedulesByUserAndDate from "../1_backendLogic/findSchedulesByUserAndDate";
-import useAlertModalAtom from "../Recoil/useAlertModalAtom";
+import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -33,7 +33,7 @@ const useGetTripData = (date, userIdx) => {
     setTripData(serverState?.rows);
   }, [serverState, setAlert]);
 
-  return tripData;
+  return [tripData];
 };
 
 export default useGetTripData;

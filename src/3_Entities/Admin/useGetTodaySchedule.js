@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFetch } from "../../4_Shared/util/apiUtil"; // useFetch 경로는 실제 경로에 맞게 수정
 import useAlertModalAtom from "../../4_Shared/Recoil/useAlertModalAtom";
-import findSchedulesByUserAndDate from "../1_backendLogic/findSchedulesByUserAndDate";
+import findSchedulesByUserAndDate from "../1_backendLogic/findSchedulesByDate";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 

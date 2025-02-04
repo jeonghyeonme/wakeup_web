@@ -13,6 +13,7 @@ const useLogout = () => {
     removeCookie("access_token", { path: "/" });
     removeCookie("refresh_token", { path: "/" });
     removeCookie("type", { path: "/" });
+    removeCookie("userIdx", { path: "/" });
 
     // 로그아웃 후 로그인 페이지로 리다이렉트
     navigate("/login");

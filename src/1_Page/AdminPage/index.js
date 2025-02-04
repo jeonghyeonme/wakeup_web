@@ -1,11 +1,10 @@
 import STYLE from "./style";
-import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { useEffect } from "react";
 import useManageDriverDate from "./model/useManageDriverDate";
 import useDate from "./model/useDate";
 import UserBox from "./ui/UserBox";
-import NonSchedule from "./ui/NonSchedule";
+import NonSchedule from "../../2_Widget/NonSchedule";
 
 import ModalCalander from "../../2_Widget/ModalCalander";
 import useGetTodaySchedule from "../../3_Entities/Admin/useGetTodaySchedule";
