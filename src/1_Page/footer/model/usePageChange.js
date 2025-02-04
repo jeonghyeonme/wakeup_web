@@ -10,7 +10,7 @@ const usePageChange = () => {
     navigate(activeTab);
   }, [activeTab, navigate]);
 
-  return { activeTab, setActiveTab };
+  return [activeTab, setActiveTab];
 };
 
 export default usePageChange;

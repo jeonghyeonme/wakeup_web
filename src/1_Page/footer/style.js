@@ -3,6 +3,9 @@ import styled from "styled-components";
 const STYLE = {
   NavContainer: styled.div`
     display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     justify-content: space-around;
     background-color: #fff;
     border-top: 1px solid #ddd;

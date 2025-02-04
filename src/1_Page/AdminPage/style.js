@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 const STYLE = {
+  Container: styled.div`
+    width: 100%;
+    height: 90vh;
+  `,
   HeaderTag: styled.div`
     display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     align-items: center;
     justify-content: end;
@@ -28,10 +29,9 @@ const STYLE = {
     pointer-events: auto; /* 포커스를 받을 수 있도록 설정 */
   `,
   ScheduleContainer: styled.div`
-    position: relative;
-    top: 10vh;
-    min-height: calc(100vh - 10vh);
     width: 100%;
+    height: 80vh;
+    overflow-y: scroll;
   `,
   UserContainer: styled.div`
     display: flex;

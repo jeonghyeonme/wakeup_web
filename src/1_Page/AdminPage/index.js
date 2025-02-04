@@ -12,8 +12,6 @@ import useGetTodaySchedule from "../../3_Entities/Admin/useGetTodaySchedule";
 import useModalHandler from "../../4_Shared/model/useModalHandler";
 import useGetMyInfo from "../../3_Entities/Account/useGetMyInfo";
 
-import useIsLogin from "../../4_Shared/model/useIsLogin";
-
 const AdminPage = () => {
   const [myInfo] = useGetMyInfo();
   useEffect(() => {
@@ -28,32 +26,35 @@ const AdminPage = () => {
 
   return (
     <>
-      <STYLE.HeaderTag>
-        <STYLE.DateText onClick={modalCalanderToggle}>
-          {format(date, "yyyy-MM-dd")}
-        </STYLE.DateText>
-        <STYLE.DateInput
-          ref={dateInputRef}
-          value={format(date, "yyyy-MM-dd")}
-          onChange={handleDateChange}
-        />
-      </STYLE.HeaderTag>
-      {displayTimeEnoughDriverDateData.length +
-        displayTimeOverDriverDateData.length ===
-      0 ? (
-        <STYLE.ScheduleContainer>
-          <NonSchedule />
-        </STYLE.ScheduleContainer>
-      ) : (
-        <STYLE.UserContainer>
-          {displayTimeOverDriverDateData.map((schedule) => (
-            <UserBox schedule={schedule} isEnoughTime={false} />
-          ))}
-          {displayTimeEnoughDriverDateData.map((schedule) => (
-            <UserBox schedule={schedule} isEnoughTime={true} />
-          ))}
-        </STYLE.UserContainer>
-      )}
+      <STYLE.Container>
+        <STYLE.HeaderTag>
+          <STYLE.DateText onClick={modalCalanderToggle}>
+            {format(date, "yyyy-MM-dd")}
+          </STYLE.DateText>
+          <STYLE.DateInput
+            ref={dateInputRef}
+            value={format(date, "yyyy-MM-dd")}
+            onChange={handleDateChange}
+          />
+        </STYLE.HeaderTag>
+        {displayTimeEnoughDriverDateData.length +
+          displayTimeOverDriverDateData.length ===
+        0 ? (
+          <STYLE.ScheduleContainer>
+            <NonSchedule />
+          </STYLE.ScheduleContainer>
+        ) : (
+          <STYLE.UserContainer>
+            {displayTimeOverDriverDateData.map((schedule) => (
+              <UserBox schedule={schedule} isEnoughTime={false} />
+            ))}
+            {displayTimeEnoughDriverDateData.map((schedule) => (
+              <UserBox schedule={schedule} isEnoughTime={true} />
+            ))}
+          </STYLE.UserContainer>
+        )}
+      </STYLE.Container>
+
       {isModalCalander && (
         <ModalCalander
           handleDateChange={handleDateChange}

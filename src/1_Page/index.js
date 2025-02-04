@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+
 import AdminPage from "./AdminPage";
 import Footer from "./Footer";
 import CrewPage from "./CrewPage";
@@ -12,7 +13,6 @@ import useIsLogin from "../4_Shared/model/useIsLogin";
 
 const Page = () => {
   const location = useLocation();
-  // Footer를 제외할 경로 리스트
   const noFooterRoutes = ["/login", "/findid", "/findpw"];
   const [isLogin] = useIsLogin();
 
@@ -26,22 +26,18 @@ const Page = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        {/* <Route path="/login" element={<LoginPage />} /> */}
-        {/* <Route path="/findid" element={<FindIdPage />} /> */}
-        {/* <Route path="/findpw" element={<FindPwPage />} /> */}
+        <Route path="/" element={<HomePage />} />
         <Route
           path="/admin"
           element={<ProtectedRoute element={<AdminPage />} />}
         />
         <Route
-          path="/admin"
+          path="/crew"
           element={<ProtectedRoute element={<CrewPage />} />}
         />
-        <Route
-          path="/home"
-          element={<ProtectedRoute element={<HomePage />} />}
-        />
+        <Route path="/login" element={<AdminPage />} />
+        {/* <Route path="/findid" element={<FindIdPage />} /> */}
+        {/* <Route path="/findpw" element={<FindPwPage />} /> */}
         {/* <Route path="/profile" element={<ProfilePage />} /> */}
         {/* <Route path="/trip" element={<Trip />} /> */}
       </Routes>
